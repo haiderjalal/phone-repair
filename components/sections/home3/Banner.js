@@ -3,6 +3,8 @@
 import Link from "next/link"
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
+import ServiceBookingForm from "@/components/ServiceBookingForm/ServiceBookingForm"
+import styles from './Banner.module.css'
 
 const swiperOptions = {
     modules: [Autoplay, Pagination, Navigation],
@@ -49,16 +51,25 @@ export default function Banner() {
                         <img src="assets/images/shapes/main-slider-three-shape-3.png" alt="" className="img-bounce" />
                     </div>
                     <div className="container">
-                        <div className="main-slider-three__content">
-                            <div className="main-slider-three__sub-title-box">
-                                <p className="main-slider-three__sub-title">Based in NewCastle</p>
+                        <div className="row align-items-center">
+                            <div className="col-xl-7 col-lg-6">
+                                <div className="main-slider-three__content">
+                                    <div className="main-slider-three__sub-title-box">
+                                        <p className="main-slider-three__sub-title">Based in NewCastle</p>
+                                    </div>
+                                    <h2 className="main-slider-three__title">We Are Experts At <br/> Cell Phone Repair!</h2>
+                                    <p className="main-slider-three__text">We have been operating for over a decade, providing
+                                        top-notch services We have been <br/> operating for over a decade lenitive antique
+                                        corrupt quo quad molestation</p>
+                                    <div className="main-slider-three__btn-box">
+                                        <Link href="services" className="main-slider-three__btn thm-btn">Repair My Device</Link>
+                                    </div>
+                                </div>
                             </div>
-                            <h2 className="main-slider-three__title">We Are Experts At <br/> Cell Phone Repair!</h2>
-                            <p className="main-slider-three__text">We have been operating for over a decade, providing
-                                top-notch services We have been <br/> operating for over a decade lenitive antique
-                                corrupt quo quad molestation</p>
-                            <div className="main-slider-three__btn-box">
-                                <Link href="services" className="main-slider-three__btn thm-btn">Repair My Device</Link>
+                            <div className="col-xl-5 col-lg-6">
+                                <div className={`main-slider-three__form-wrapper ${styles['main-slider-three__form-wrapper']}`}>
+                                    <ServiceBookingForm />
+                                </div>
                             </div>
                         </div>
                     </div>

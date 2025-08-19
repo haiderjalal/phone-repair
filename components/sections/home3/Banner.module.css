@@ -1,0 +1,40 @@
+/* Banner Form Wrapper Styles */
+.main-slider-three__form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    position: relative;
+    z-index: 10;
+}
+
+/* Responsive adjustments for the banner layout */
+@media (max-width: 1199px) {
+    .main-slider-three__form-wrapper {
+        padding: 15px 0;
+    }
+}
+
+@media (max-width: 991px) {
+    .main-slider-three__form-wrapper {
+        margin-top: 30px;
+        padding: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .main-slider-three__form-wrapper {
+        margin-top: 20px;
+    }
+}
+
+/* Ensure proper spacing for the content on smaller screens */
+@media (max-width: 575px) {
+    .main-slider-three__content {
+        text-align: center;
+    }
+    
+    .main-slider-three__form-wrapper {
+        margin-top: 15px;
+    }
+}
