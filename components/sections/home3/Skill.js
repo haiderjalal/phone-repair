@@ -62,7 +62,7 @@ export default function Skill() {
                                 <div className="skill-one__right-img">
                                     <img src="assets/images/resources/skill-1-1.jpg" alt=""/>
                                     <div className="skill-one__video-link">
-                                        <a nClick={() => setOpen(true)} className="video-popup">
+                                        <a onClick={() => setOpen(true)} className="video-popup">
                                             <div className="skill-one__video-icon">
                                                 <span className="fa fa-play"></span>
                                                 <i className="ripple"></i>
