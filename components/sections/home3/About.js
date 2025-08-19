@@ -17,7 +17,7 @@ export default function About() {
                             
                             <div className="about-three__img-box">
                                 <div className="about-three__img">
-                                    <img src="assets/images/resources/about-3-1.jpg" alt=""/>
+                                    <img src="assets/images/resources/service-1.jpg" alt=""/>
                                 </div>
                                 <div className="about-three__img-two">
                                     <img src="assets/images/resources/about-3-2.jpg" alt=""/>

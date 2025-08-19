@@ -34,12 +34,7 @@ export default function Header3({ scroll, handlePopup, handleMobileMenu  }) {
                             <Link href="#"><i className="icon-link-in"></i></Link>
                             <Link href="#"><i className="icon-instagram"></i></Link>
                         </div>
-                        <div className="main-menu-three__search-box">
-                            <Link href="#" className="main-menu-three__search search-toggler">
-                                <p className="main-menu-three__search-text">Search</p>
-                                <span className="icon-search-interface-symbol" onClick={handlePopup}></span>
-                            </Link>
-                        </div>
+                  
                     </div>
                 </div>
             </div>
@@ -57,20 +52,11 @@ export default function Header3({ scroll, handlePopup, handleMobileMenu  }) {
                         </div>
                         <div className="main-menu-three__right">
                             <div className="main-menu-three__cart-btn-and-login-box">
-                                <div className="main-menu-three__cart">
-                                    <Link href="#"><span className="fas fa-shopping-cart"></span></Link>
-                                </div>
+                             
                                 <div className="main-menu-three__btn-box">
                                     <Link href="contact" className="main-menu-three__btn thm-btn">Get a quote</Link>
                                 </div>
-                                <div className="main-menu-three__login-box">
-                                    <div className="main-menu-three__login-icon">
-                                        <span className="icon-user"></span>
-                                    </div>
-                                    <p className="main-menu-three__login-text">
-                                        <Link href="#">Login</Link>
-                                    </p>
-                                </div>
+                    
                             </div>
                         </div>
                     </div>
@@ -98,14 +84,7 @@ export default function Header3({ scroll, handlePopup, handleMobileMenu  }) {
                                 <div className="main-menu-three__btn-box">
                                     <Link href="contact" className="main-menu-three__btn thm-btn">Get a quote</Link>
                                 </div>
-                                <div className="main-menu-three__login-box">
-                                    <div className="main-menu-three__login-icon">
-                                        <span className="icon-user"></span>
-                                    </div>
-                                    <p className="main-menu-three__login-text">
-                                        <Link href="#">Login</Link>
-                                    </p>
-                                </div>
+                         
                             </div>
                         </div>
                     </div>

@@ -22,24 +22,7 @@ export default function Menu() {
                 <li>
                     <Link href="about">About Us</Link>
                 </li>
-                <li className="dropdown">
-                    <Link href="#">Pages</Link>
-                    <ul>
-                        <li><Link href="team">Team</Link></li>
-                        <li><Link href="team-details">Team Details</Link></li>
-                        <li className="dropdown">
-                            <Link href="#">Projects</Link>
-                            <ul>
-                                <li><Link href="projects">Projects</Link></li>
-                                <li><Link href="project-details">Project Details</Link></li>
-                            </ul>
-                        </li>
-                        <li><Link href="testimonials">Testimonials</Link></li>
-                        <li><Link href="pricing">Pricing</Link></li>
-                        <li><Link href="faq">Faq</Link></li>
-                        <li><Link href="404">404 Error</Link></li>
-                    </ul>
-                </li>
+         
                 <li className="dropdown">
                     <Link href="#">Services</Link>
                     <ul>
