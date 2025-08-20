@@ -14,7 +14,7 @@ export default function Header3({ scroll, handlePopup, handleMobileMenu  }) {
                                 <i className="icon-call"></i>
                             </div>
                             <div className="text">
-                                <p> <span>Talk to us</span> <Link href="tel:9288006780">+92 ( 8800 ) - 6780</Link></p>
+                                <p> <span>Talk to us</span> <Link href="tel:9288006780">+61 2 4957 8574</Link></p>
                             </div>
                         </li>
                         <li>
@@ -22,24 +22,19 @@ export default function Header3({ scroll, handlePopup, handleMobileMenu  }) {
                                 <i className="icon-envelope"></i>
                             </div>
                             <div className="text">
-                                <p> <span>Mail us</span> <Link href="mailto:info@fonisa24.com">example@gamil.com</Link>
+                                <p> <span>Mail us</span> <Link href="mailto:info@fonisa24.com">Lambtonsphone@gmail.com</Link>
                                 </p>
                             </div>
                         </li>
                     </ul>
                     <div className="main-menu-three__top-right">
                         <div className="main-menu-three__social">
-                            <Link href="#"><i className="icon-facebook"></i></Link>
+                        <Link href="https://www.facebook.com/lambtonphones/"><i className="icon-facebook"></i></Link>
                             <Link href="#"><i className="icon-xpa"></i></Link>
                             <Link href="#"><i className="icon-link-in"></i></Link>
                             <Link href="#"><i className="icon-instagram"></i></Link>
                         </div>
-                        <div className="main-menu-three__search-box">
-                            <Link href="#" className="main-menu-three__search search-toggler">
-                                <p className="main-menu-three__search-text">Search</p>
-                                <span className="icon-search-interface-symbol" onClick={handlePopup}></span>
-                            </Link>
-                        </div>
+                  
                     </div>
                 </div>
             </div>
@@ -57,20 +52,11 @@ export default function Header3({ scroll, handlePopup, handleMobileMenu  }) {
                         </div>
                         <div className="main-menu-three__right">
                             <div className="main-menu-three__cart-btn-and-login-box">
-                                <div className="main-menu-three__cart">
-                                    <Link href="#"><span className="fas fa-shopping-cart"></span></Link>
-                                </div>
+                             
                                 <div className="main-menu-three__btn-box">
                                     <Link href="contact" className="main-menu-three__btn thm-btn">Get a quote</Link>
                                 </div>
-                                <div className="main-menu-three__login-box">
-                                    <div className="main-menu-three__login-icon">
-                                        <span className="icon-user"></span>
-                                    </div>
-                                    <p className="main-menu-three__login-text">
-                                        <Link href="#">Login</Link>
-                                    </p>
-                                </div>
+                    
                             </div>
                         </div>
                     </div>
@@ -92,20 +78,11 @@ export default function Header3({ scroll, handlePopup, handleMobileMenu  }) {
                         </div>
                         <div className="main-menu-three__right">
                             <div className="main-menu-three__cart-btn-and-login-box">
-                                <div className="main-menu-three__cart">
-                                    <Link href="#"><span className="fas fa-shopping-cart"></span></Link>
-                                </div>
+                            
                                 <div className="main-menu-three__btn-box">
                                     <Link href="contact" className="main-menu-three__btn thm-btn">Get a quote</Link>
                                 </div>
-                                <div className="main-menu-three__login-box">
-                                    <div className="main-menu-three__login-icon">
-                                        <span className="icon-user"></span>
-                                    </div>
-                                    <p className="main-menu-three__login-text">
-                                        <Link href="#">Login</Link>
-                                    </p>
-                                </div>
+                         
                             </div>
                         </div>
                     </div>

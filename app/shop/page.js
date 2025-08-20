@@ -6,7 +6,7 @@ export default function Home() {
 
     return (
         <>
-        <Layout headerStyle={2} footerStyle={4} breadcrumbTitle="Shop">
+        <Layout headerStyle={3} footerStyle={3} breadcrumbTitle="Shop">
         {/*Shop Page One Start*/}
         <section className="shop-page-one">
             <div className="container">

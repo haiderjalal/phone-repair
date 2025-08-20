@@ -37,9 +37,7 @@ export default function Faq() {
                                     </h2>
                                 </div>
                             </div>
-                            <p className="faq-one__text">He rejects pleasures to secure other greater pleasures, or else he
-                                endures pains to avoid worse pains to the selection point. But in certain circumstances
-                                and owing </p>
+                            <p className="faq-one__text">Have questions about our phone repair services? We've compiled answers to the most common questions our customers ask about repairs, warranties, and our services.</p>
                             <div className="accrodion-grp faq-one-accrodion" data-grp-name="faq-one-accrodion-1">
                                 <div className={isActive.key == 1 ? "accrodion active" : "accrodion"} onClick={() => handleToggle(1)}>
                                     <div className="accrodion-title">
@@ -47,33 +45,31 @@ export default function Faq() {
                                     </div>
                                     <div className="accrodion-content">
                                         <div className="inner">
-                                            <p>At Mayfield Cell Phone Repairs, the repair time can vary depending on the specific issue with your phone. 
-                                                However, many repairs are completed within a few hours. For more complex repairs, it may take longer, but our technicians strive to provide efficient service without compromising on quality.
-                                            </p>
+                                            <p>At Lambton Phone, the repair time can vary depending on the specific issue with your phone. 
+                                However, many repairs are completed within a few hours. For more complex repairs, it may take longer, but our technicians strive to provide efficient service without compromising on quality.
+                            </p>
                                         </div>{/* /.inner */}
                                     </div>
                                 </div>
                                 <div className={isActive.key == 2 ? "accrodion active" : "accrodion"} onClick={() => handleToggle(2)}>
                                     <div className="accrodion-title">
-                                        <h4>How often should I service my air conditioner ?</h4>
+                                        <h4>Do you provide warranty on phone repairs?</h4>
                                     </div>
                                     <div className="accrodion-content" onClick={() => handleToggle(2)}>
                                         <div className="inner">
-                                            <p>It is a long established fact that a reader will be distr acted bioiiy
-                                                the rea dablea content of a page when looking at its layout Thoiie point
-                                            </p>
+                                            <p>Yes, we provide warranty on all our phone repairs. The warranty period varies depending on the type of repair, but typically ranges from 30 to 90 days for parts and labor.
+                            </p>
                                         </div>{/* /.inner */}
                                     </div>
                                 </div>
                                 <div className={isActive.key == 3 ? "accrodion active" : "accrodion"} onClick={() => handleToggle(3)}>
                                     <div className="accrodion-title">
-                                        <h4>Why is my AC making strange noises ?</h4>
+                                        <h4>What types of phones do you repair?</h4>
                                     </div>
                                     <div className="accrodion-content">
                                         <div className="inner">
-                                            <p>It is a long established fact that a reader will be distr acted bioiiy
-                                                the rea dablea content of a page when looking at its layout Thoiie point
-                                            </p>
+                                            <p>We repair all major smartphone brands including iPhone, Samsung, Google Pixel, OnePlus, Huawei, and many others. We also service tablets and other mobile devices.
+                            </p>
                                         </div>{/* /.inner */}
                                     </div>
                                 </div>

@@ -5,7 +5,7 @@ export default function Home() {
 
     return (
         <>
-        <Layout headerStyle={2} footerStyle={4} breadcrumbTitle="Shop Details">
+        <Layout headerStyle={3} footerStyle={3} breadcrumbTitle="Shop Details">
         {/*Start Scrolling Text1*/}
         <section className="scrolling-text1">
             <div className="scrolling-title">

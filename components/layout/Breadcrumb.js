@@ -10,7 +10,7 @@ export default function Breadcrumb({ breadcrumbTitle }) {
             <div className="container">
                 <div className="page-header__inner">
                     <div className="page-header__img-1">
-                        <img src="assets/images/resources/page-header-img-1.png" alt=""/>
+                        <img src="assets/images/resources/contact-us.png" alt="" width={440} height={429}/>
                     </div>
                     <h3>{breadcrumbTitle}</h3>
                     <div className="thm-breadcrumb__inner">

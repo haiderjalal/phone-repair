@@ -22,8 +22,10 @@ export default function Footer3() {
                                 <div className="footer-widget-three__about-content">
                                     <p>Every day: 10 am to 7 pm</p>
                                     <p>Sun: 11 am to 6 pm</p>
-                                    <h4>4517 Washington Ave. <br/> Manchester, 95</h4>
-                                    <Link href="#" className="footer-widget-three__about-google-map">Google Map <span
+                                    <h4>33 Alma Rd,<br/> New Lambton NSW 2305</h4>
+                                  
+                          
+                                    <Link href="https://maps.app.goo.gl/JJSAAHVkMZEnNyvf7" className="footer-widget-three__about-google-map">Google Map <span
                                             className="icon-arrow-right"></span></Link>
                                 </div>
                             </div>
@@ -35,7 +37,7 @@ export default function Footer3() {
                                 </div>
                                 <h3 className="footer-widget-three__social-text">Your Brightest <br/> Choice in Repairs</h3>
                                 <div className="site-footer-three__social">
-                                    <Link href="#"><i className="icon-facebook"></i></Link>
+                                    <Link href="https://www.facebook.com/lambtonphones/"><i className="icon-facebook"></i></Link>
                                     <Link href="#"><i className="icon-xpa"></i></Link>
                                     <Link href="#"><i className="icon-link-in"></i></Link>
                                     <Link href="#"><i className="icon-instagram"></i></Link>

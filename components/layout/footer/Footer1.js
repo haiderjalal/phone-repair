@@ -51,11 +51,11 @@ export default function Footer1() {
                                     <h3 className="footer-widget__title">Our Service</h3>
                                 </div>
                                 <ul className="footer-widget__link list-unstyled">
-                                    <li><Link href="electric-panel-repair">Electric Repair</Link></li>
-                                    <li><Link href="lighting-fixtures">Lighting & Fixture</Link></li>
-                                    <li><Link href="maintenance-service">European Lard Sration</Link></li>
-                                    <li><Link href="maintenance-service">Electric Maintenance</Link></li>
-                                    <li><Link href="installing-ceiling-fan">Colling Service</Link></li>
+                                    <li><Link href="services">Screen Repair</Link></li>
+                                    <li><Link href="services">Battery Replacement</Link></li>
+                                    <li><Link href="services">Water Damage Recovery</Link></li>
+                                    <li><Link href="services">Software Issues</Link></li>
+                                    <li><Link href="services">Data Recovery</Link></li>
                                 </ul>
                             </div>
                         </div>

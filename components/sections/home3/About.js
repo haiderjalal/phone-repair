@@ -17,12 +17,12 @@ export default function About() {
                             
                             <div className="about-three__img-box">
                                 <div className="about-three__img">
-                                    <img src="assets/images/resources/about-3-1.jpg" alt=""/>
+                                    <img src="assets/images/resources/service-1.jpg" alt=""/>
                                 </div>
                                 <div className="about-three__img-two">
-                                    <img src="assets/images/resources/about-3-2.jpg" alt=""/>
+                                    <img src="assets/images/resources/home-about2.jpg" alt=""/>
                                     <div className="about-three__video-link">
-                                        <a nClick={() => setOpen(true)} className="video-popup">
+                                        <a onClick={() => setOpen(true)} className="video-popup">
                                             <div className="about-three__video-icon">
                                                 <span className="fa fa-play"></span>
                                                 <i className="ripple"></i>
@@ -44,20 +44,19 @@ export default function About() {
                             <div className="section-title-three text-left sec-title-animation animation-style2">
                                 <div className="section-title-three__tagline-box">
                                     <div className="section-title-three__tagline-shape"></div>
-                                    <span className="section-title-three__tagline">Quality Repair</span>
+                                    <span className="section-title-three__tagline">Lambton's Trusted</span>
                                 </div>
-                                <h2 className="section-title-three__title title-animation">We Can Fix It Almost As Fast
-                                    As You Can Break It.</h2>
+                                <h2 className="section-title-three__title title-animation">Your Local Phone Repair
+                                    Experts Since 2015</h2>
                             </div>
-                            <p className="about-three__text-1">Duis aute irure dolor in repreh enderit in volup tate velit
-                                esse cillum dolore</p>
+                            <p className="about-three__text-1">At Lambton Phones, we specialize in fast, reliable repairs for all smartphone brands and models, serving the Lambton community with excellence.</p>
                             <ul className="list-unstyled about-three__points">
                                 <li>
                                     <div className="icon">
                                         <span className="icon-like"></span>
                                     </div>
                                     <div className="text">
-                                        <p>WE ALWAYS PUT QUALITY FIRST</p>
+                                        <p>GENUINE PARTS & WARRANTY</p>
                                     </div>
                                 </li>
                                 <li>
@@ -65,7 +64,7 @@ export default function About() {
                                         <span className="icon-hands-on-experience"></span>
                                     </div>
                                     <div className="text">
-                                        <p>CUSTOMER SATISFACTION IS ABSOLUTE</p>
+                                        <p>LOCAL LAMBTON COMMUNITY FOCUSED</p>
                                     </div>
                                 </li>
                                 <li>
@@ -73,13 +72,11 @@ export default function About() {
                                         <span className="icon-project-complete"></span>
                                     </div>
                                     <div className="text">
-                                        <p>FAST AND QUALITY WORK</p>
+                                        <p>SAME DAY REPAIR SERVICE</p>
                                     </div>
                                 </li>
                             </ul>
-                            <p className="about-three__text-2">Duis aute irure dolor in repreh enderit in volup tate velit
-                                esse cillum dolore eu fugiat nulla dolor atur with Lorem ipsum is simply free text
-                                market web bites eius mod ut labore duis aute irure pari</p>
+                            <p className="about-three__text-2">From cracked screens to water damage, battery replacements to software issues, Lambton Phones has been the go-to repair shop for residents and businesses in Lambton. Our certified technicians use only high-quality parts and provide comprehensive warranties on all repairs.</p>
                             <Link href="contact" className="thm-btn">Contact Us</Link>
                         </div>
                     </div>
