@@ -9,15 +9,9 @@ export default function Menu() {
         <>
 
             <ul className="main-menu__list">
-                <li className="dropdown">
-                    <Link href="/">Home </Link>
-                    <ul>
-                        <li><Link href="/">Home One</Link></li>
-                        <li><Link href="index2">Home Two</Link></li>
-                        <li><Link href="index3">Home Three</Link></li>
-                        <li><Link href="index-dark">Home Dark</Link></li>
-                        
-                    </ul>
+                <li >
+                    <Link href="index3">Home </Link>
+               
                 </li>
                 <li>
                     <Link href="about">About Us</Link>
@@ -44,10 +38,7 @@ export default function Menu() {
                     <ul>
                         <li><Link href="shop">Products</Link></li>
                         <li><Link href="shop-details">Products Details</Link></li>
-                        <li><Link href="cart">Cart</Link></li>
-                        <li><Link href="checkout">Checkout</Link></li>
-                        <li><Link href="wishlist">Wishlist</Link></li>
-                        <li><Link href="account">My Account</Link></li>
+                   
                     </ul>
                 </li>
                 <li className="dropdown">

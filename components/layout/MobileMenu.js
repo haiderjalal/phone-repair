@@ -38,15 +38,7 @@ const MobileMenu = ({ isSidebar, handleMobileMenu, handleSidebar }) => {
                     <div className="mobile-nav__container">
                         <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul className="main-menu__list">
-                                <li className={isActive.key == 1 ? "dropdown current" : "dropdown"}><Link href="/">Home</Link>
-                                    <ul style={{ display: isActive.key == 1 ? "block" : "none" }}>
-                                        <li><Link href="/">Home One</Link></li>
-                                        <li><Link href="index2">Home Two</Link></li>
-                                        <li><Link href="index3">Home Three</Link></li>
-                                        <li><Link href="index-dark">Home Dark</Link></li>
-                                    </ul>
-                                    <button className={isActive.key == 1 ? "expanded open" : ""} onClick={() => handleToggle(1)}><span className="fa fa-angle-right" /></button>
-                                </li>
+                                <li><Link href="index3">Home</Link></li>
                                 <li><Link href="/about/">About</Link></li>
                          
                                 <li className={isActive.key == 3 ? "dropdown current" : "dropdown"}><Link href="/#">Services</Link>
@@ -67,10 +59,7 @@ const MobileMenu = ({ isSidebar, handleMobileMenu, handleSidebar }) => {
                                     <ul style={{ display: isActive.key == 4 ? "block" : "none" }}>                                 
                                         <li><Link href="shop">Products</Link></li>
                                         <li><Link href="shop-details">Products Details</Link></li>
-                                        <li><Link href="cart">Cart</Link></li>
-                                        <li><Link href="checkout">Checkout</Link></li>
-                                        <li><Link href="wishlist">Wishlist</Link></li>
-                                        <li><Link href="account">My Account</Link></li>
+                                  
                                     </ul>
                                     <button className={isActive.key == 4 ? "expanded open" : ""} onClick={() => handleToggle(4)}><span className="fa fa-angle-right" /></button>
                                 </li>
