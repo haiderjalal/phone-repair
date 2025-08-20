@@ -67,7 +67,7 @@ export default function Header2({ scroll, handleMobileMenu }) {
                                         </div>
                                     </div>
                                     <div className="main-menu-two__btn-box">
-                                        <Link href="contact" className="main-menu-two__btn thm-btn">Get Appointment</Link>
+                                        <a href="https://wa.me/923556172662?text=Hello!%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener noreferrer" className="main-menu-two__btn thm-btn">Get Appointment</a>
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@ export default function Header2({ scroll, handleMobileMenu }) {
                                         </div>
                                     </div>
                                     <div className="main-menu-two__btn-box">
-                                        <Link href="contact" className="main-menu-two__btn thm-btn">Get Appointment</Link>
+                                        <a href="https://wa.me/923556172662?text=Hello!%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener noreferrer" className="main-menu-two__btn thm-btn">Get Appointment</a>
                                     </div>
                                 </div>
                             </div>

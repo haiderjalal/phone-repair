@@ -20,8 +20,31 @@ export default function ServiceBookingForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // Handle form submission here
-        console.log('Form submitted:', formData)
+        
+        // Create WhatsApp message for appointment booking
+        const whatsappMessage = `Hello! New appointment request:
+
+Full Name: ${formData.fullName}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Service Type: ${formData.serviceType}`
+        
+        // Encode the message for URL
+        const encodedMessage = encodeURIComponent(whatsappMessage)
+        
+        // WhatsApp API URL with the provided number
+        const whatsappURL = `https://wa.me/923556172662?text=${encodedMessage}`
+        
+        // Open WhatsApp in new tab
+        window.open(whatsappURL, '_blank')
+        
+        // Reset form
+        setFormData({
+            fullName: '',
+            email: '',
+            phone: '',
+            serviceType: ''
+        })
     }
 
     return (

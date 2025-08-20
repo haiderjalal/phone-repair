@@ -156,7 +156,7 @@ export default function Home() {
                         to avoid worse pains to the selection circumstances</p>
                     <div className="cta-one__btn-and-call-box">
                         <div className="cta-one__btn-box">
-                            <Link href="contact" className="cta-one__btn thm-btn">Get Appointment</Link>
+                            <a href="https://wa.me/923556172662?text=Hello!%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener noreferrer" className="cta-one__btn thm-btn">Get Appointment</a>
                         </div>
                         <div className="cta-one__call-box">
                             <div className="icon">
