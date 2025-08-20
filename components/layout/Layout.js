@@ -7,12 +7,11 @@ import Breadcrumb from './Breadcrumb'
 import SearchPopup from "./SearchPopup"
 import Sidebar from "./Sidebar"
 import Header1 from "./header/Header1"
-import Header2 from './header/Header2'
+
 import Header3 from "./header/Header3"
-import Footer1 from './footer/Footer1'
-import Footer2 from './footer/Footer2'
+
 import Footer3 from "./footer/Footer3"
-import Footer4 from "./footer/Footer4"
+
 
 export default function Layout({ headerStyle, footerStyle, headTitle, breadcrumbTitle, children, wrapperCls }) {
     const [scroll, setScroll] = useState(0)
@@ -51,7 +50,6 @@ export default function Layout({ headerStyle, footerStyle, headTitle, breadcrumb
             <div className={`page-wrapper ${wrapperCls ? wrapperCls : ""}`} id="#top">
                 {!headerStyle && <Header1 scroll={scroll} isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} handlePopup={handlePopup} isSidebar={isSidebar} handleSidebar={handleSidebar} />}
                 {headerStyle == 1 ? <Header1 scroll={scroll} isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} handlePopup={handlePopup} isSidebar={isSidebar} handleSidebar={handleSidebar} /> : null}
-                {headerStyle == 2 ? <Header2 scroll={scroll} isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} handlePopup={handlePopup} isSidebar={isSidebar} handleSidebar={handleSidebar} /> : null}
                 {headerStyle == 3 ? <Header3 scroll={scroll} isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} handlePopup={handlePopup} isSidebar={isSidebar} handleSidebar={handleSidebar} /> : null}
 
 
@@ -63,10 +61,9 @@ export default function Layout({ headerStyle, footerStyle, headTitle, breadcrumb
                 {children}
 
                 {!footerStyle && < Footer1 />}
-                {footerStyle == 1 ? < Footer1 /> : null}
-                {footerStyle == 2 ? < Footer2 /> : null}
+           
                 {footerStyle == 3 ? < Footer3 /> : null}
-                {footerStyle == 4 ? < Footer4 /> : null}
+           
             </div>
             <BackToTop scroll={scroll} />
         </>

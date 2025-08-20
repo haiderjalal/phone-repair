@@ -38,7 +38,7 @@ const MobileMenu = ({ isSidebar, handleMobileMenu, handleSidebar }) => {
                     <div className="mobile-nav__container">
                         <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul className="main-menu__list">
-                                <li><Link href="index3">Home</Link></li>
+                                <li><Link href="/">Home</Link></li>
                                 <li><Link href="/about/">About</Link></li>
                          
                                 <li className={isActive.key == 3 ? "dropdown current" : "dropdown"}><Link href="/#">Services</Link>

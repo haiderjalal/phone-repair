@@ -48,8 +48,8 @@ Service Type: ${formData.serviceType}`
     }
 
     return (
-        <div className={styles['service-booking-form']}>
-            <div className={styles['service-booking-form__inner']}>
+        <div className={styles['service-booking-form']} >
+            <div className={styles['service-booking-form__inner'] }>
                 <h3 className={styles['service-booking-form__title']}>Request A Free Quote</h3>
                 <form className={styles['service-booking-form__form']} onSubmit={handleSubmit}>
                     <div className={styles['service-booking-form__input-box']}>
