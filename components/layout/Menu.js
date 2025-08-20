@@ -10,7 +10,7 @@ export default function Menu() {
 
             <ul className="main-menu__list">
                 <li >
-                    <Link href="index3">Home </Link>
+                    <Link href="/">Home </Link>
                
                 </li>
                 <li>
