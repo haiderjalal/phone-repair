@@ -78,9 +78,7 @@ export default function Header3({ scroll, handlePopup, handleMobileMenu  }) {
                         </div>
                         <div className="main-menu-three__right">
                             <div className="main-menu-three__cart-btn-and-login-box">
-                                <div className="main-menu-three__cart">
-                                    <Link href="#"><span className="fas fa-shopping-cart"></span></Link>
-                                </div>
+                            
                                 <div className="main-menu-three__btn-box">
                                     <Link href="contact" className="main-menu-three__btn thm-btn">Get a quote</Link>
                                 </div>
