@@ -21,12 +21,9 @@ export default function Skill() {
                                 <h2 className="section-title-three__title title-animation">We Specialize In Quick &
                                     <br/> Professional Repairs</h2>
                             </div>
-                            <p className="skill-one__text">There are many variations of passages of Lorem Ipsum available,
-                                but the majority have suffered alteration in some words which don't look even slightly
-                                believable. There are many variations of passages of Lorem Ipsum available</p>
-                            <p className="skill-one__text-2">There are many variations of passages of Lorem Ipsum available,
-                                but the majority have suffered alteration in some words which don't look even slightly
-                                believable. There are many variations of passages of Lorem Ipsum available</p>
+                            <p className="skill-one__text"> At Lambton Phones, we specialize in comprehensive mobile device repair services with over a decade of experience. Our certified technicians handle everything from screen replacements to complex motherboard repairs, ensuring your device is restored to perfect working condition.
+</p>
+                            <p className="skill-one__text-2">We use only genuine parts and cutting-edge diagnostic tools to provide fast, reliable repairs. Whether it's an iPhone, Samsung, or any other smartphone brand, our expert team delivers professional service with a warranty you can trust.</p>
                             <div className="skill-one__progress">
                                 <div className="skill-one__progress-single">
                                     <div className="bar">
