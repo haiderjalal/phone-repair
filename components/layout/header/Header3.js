@@ -22,14 +22,14 @@ export default function Header3({ scroll, handlePopup, handleMobileMenu  }) {
                                 <i className="icon-envelope"></i>
                             </div>
                             <div className="text">
-                                <p> <span>Mail us</span> <Link href="mailto:info@fonisa24.com">example@gamil.com</Link>
+                                <p> <span>Mail us</span> <Link href="mailto:info@fonisa24.com">Lambtonsphone@gmail.com</Link>
                                 </p>
                             </div>
                         </li>
                     </ul>
                     <div className="main-menu-three__top-right">
                         <div className="main-menu-three__social">
-                            <Link href="#"><i className="icon-facebook"></i></Link>
+                        <Link href="https://www.facebook.com/lambtonphones/"><i className="icon-facebook"></i></Link>
                             <Link href="#"><i className="icon-xpa"></i></Link>
                             <Link href="#"><i className="icon-link-in"></i></Link>
                             <Link href="#"><i className="icon-instagram"></i></Link>
