@@ -11,9 +11,14 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Blog } from './collections/Blog'
 import { Authors } from './collections/Authors'
+import { Categories } from './collections/Categories'
+import { Pages } from './collections/Pages'
+import { Posts } from './collections/Posts'
+import { Products } from './collections/Products'
+import { defaultLexical } from './fields/defaultLexical'
 
 // Change the import
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { sqliteAdapter } from '@payloadcms/db-sqlite'
 
 
 const filename = fileURLToPath(import.meta.url)
@@ -28,17 +33,20 @@ export default buildConfig({
   },
   cors: [
     'http://localhost:3000',
-    'https://localhost:3000'
+    'https://localhost:3000',
   ],
-  collections: [Users, Media, Blog, Authors],
-  editor: lexicalEditor(),
+  collections: [Users, Media, Blog, Authors, Categories, Pages, Posts, Products],
+  editor: defaultLexical,
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   // Update the db configuration
-  db: mongooseAdapter({
-    url: process.env.DATABASE_URI || '',
+  db: sqliteAdapter({
+    client: {
+      url: process.env.DATABASE_URI || '',
+      authToken: process.env.DATABASE_AUTH_TOKEN || '',
+    },
   }),
   // Local storage is used by default, no configuration needed
   sharp,

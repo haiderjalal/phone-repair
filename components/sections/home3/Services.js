@@ -101,17 +101,17 @@ const ServiceItem = ({ service }) => {
 
           <ul className="pricing-two__price-points list-unstyled" style={{ fontSize: '14px' }}>
             {service.features.map((feature, index) => (
-              <li key={index} style={{ marginTop: '8px', paddingLeft: '5px' }}>
-                <div className="icon">
+              <li key={index} style={{ marginTop: '8px', paddingLeft: '0px', display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                <div className="icon" style={{ marginTop: '2px', flexShrink: 0 }}>
                   <span className="icon-check"></span>
                 </div>
-                <p style={{ fontSize: '14px', margin: '0' }}>{feature}</p>
+                <p style={{ fontSize: '13px', margin: '0', lineHeight: '1.4', flex: 1 }}>{feature}</p>
               </li>
             ))}
           </ul>
 
           <div className="services-four__btn-box">
-            <Link href={service.linkHref} className="thm-btn services-four__btn" style={{ fontSize: '14px', padding: '8px 16px' }}>
+            <Link href={service.linkHref} className="thm-btn services-four__btn" style={{ fontSize: '12px', padding: '6px 12px' }}>
               {service.buttonText}
             </Link>
           </div>

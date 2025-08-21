@@ -71,6 +71,10 @@ export interface Config {
     media: Media;
     blogs: Blog;
     authors: Author;
+    categories: Category;
+    pages: Page;
+    posts: Post;
+    products: Product;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -81,12 +85,16 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     blogs: BlogsSelect<false> | BlogsSelect<true>;
     authors: AuthorsSelect<false> | AuthorsSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
+    posts: PostsSelect<false> | PostsSelect<true>;
+    products: ProductsSelect<false> | ProductsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   globals: {};
   globalsSelect: {};
@@ -122,7 +130,7 @@ export interface UserAuthOperations {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -146,7 +154,7 @@ export interface User {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -165,7 +173,7 @@ export interface Media {
  * via the `definition` "blogs".
  */
 export interface Blog {
-  id: string;
+  id: number;
   title: string;
   slug: string;
   content?: {
@@ -187,8 +195,8 @@ export interface Blog {
    * Brief description of the blog post
    */
   excerpt?: string | null;
-  featuredImage?: (string | null) | Media;
-  author?: (string | null) | Author;
+  featuredImage?: (number | null) | Media;
+  author?: (number | null) | Author;
   publishedDate?: string | null;
   status?: ('draft' | 'published') | null;
   /**
@@ -205,7 +213,7 @@ export interface Blog {
  * via the `definition` "authors".
  */
 export interface Author {
-  id: string;
+  id: number;
   name: string;
   email: string;
   /**
@@ -215,7 +223,7 @@ export interface Author {
   /**
    * Author profile picture
    */
-  avatar?: (string | null) | Media;
+  avatar?: (number | null) | Media;
   socialLinks?: {
     twitter?: string | null;
     linkedin?: string | null;
@@ -226,31 +234,171 @@ export interface Author {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  name: string;
+  description?: string | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  slug: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    keywords?: string | null;
+  };
+  publishedDate?: string | null;
+  status?: ('draft' | 'published') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts".
+ */
+export interface Post {
+  id: number;
+  title: string;
+  slug: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  excerpt?: string | null;
+  featuredImage?: (number | null) | Media;
+  author: number | Author;
+  category?: (number | Category)[] | null;
+  tags?: string[] | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    keywords?: string | null;
+  };
+  publishedDate?: string | null;
+  status?: ('draft' | 'published') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: number;
+  title: string;
+  slug: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  price: number;
+  compareAtPrice?: number | null;
+  images?: (number | Media)[] | null;
+  category?: (number | Category)[] | null;
+  inventory?: {
+    quantity?: number | null;
+    trackQuantity?: boolean | null;
+    allowBackorder?: boolean | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    keywords?: string | null;
+  };
+  status?: ('draft' | 'published') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'blogs';
-        value: string | Blog;
+        value: number | Blog;
       } | null)
     | ({
         relationTo: 'authors';
-        value: string | Author;
+        value: number | Author;
+      } | null)
+    | ({
+        relationTo: 'categories';
+        value: number | Category;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'posts';
+        value: number | Post;
+      } | null)
+    | ({
+        relationTo: 'products';
+        value: number | Product;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -260,10 +408,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -283,7 +431,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -364,6 +512,92 @@ export interface AuthorsSelect<T extends boolean = true> {
         linkedin?: T;
         website?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  content?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        keywords?: T;
+      };
+  publishedDate?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts_select".
+ */
+export interface PostsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  content?: T;
+  excerpt?: T;
+  featuredImage?: T;
+  author?: T;
+  category?: T;
+  tags?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        keywords?: T;
+      };
+  publishedDate?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products_select".
+ */
+export interface ProductsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  price?: T;
+  compareAtPrice?: T;
+  images?: T;
+  category?: T;
+  inventory?:
+    | T
+    | {
+        quantity?: T;
+        trackQuantity?: T;
+        allowBackorder?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        keywords?: T;
+      };
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }
