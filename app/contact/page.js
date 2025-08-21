@@ -166,7 +166,7 @@ Message: ${formData.message}`
             <div className="container">
                 <div className="cta-one__inner">
                     <div className="cta-one__img">
-                        <img src="assets/images/resources/cta.jpg" alt="" width={610} height={520}/>
+                        <img src="assets/images/resources/cta.jpg" alt="" width={610} height={522}/>
 
                     </div>
                     <div className="section-title text-left">
