@@ -1,7 +1,36 @@
 'use client'
+import { useState, useEffect } from 'react'
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-export default function Home() {
+import { getBlogs, getMediaURL, formatDate, getExcerpt } from '@/lib/api'
+
+export default function BlogPage() {
+    const [blogs, setBlogs] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(0)
+
+    useEffect(() => {
+        fetchBlogs()
+    }, [currentPage])
+
+    const fetchBlogs = async () => {
+        setLoading(true)
+        try {
+            const data = await getBlogs(9, currentPage) // 9 blogs per page (3x3 grid)
+            setBlogs(data.docs || [])
+            setTotalPages(data.totalPages || 0)
+        } catch (error) {
+            console.error('Error fetching blogs:', error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
 
     return (
         <>
@@ -9,35 +38,115 @@ export default function Home() {
         {/*Blog Page Start*/}
         <section className="blog-page">
             <div className="container">
-                <div className="row">
-                    {/*Blog One Single Start*/}
-                    <div className="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="100ms">
-                        <div className="blog-one__single">
-                            <div className="blog-one__img-box">
-                                <div className="blog-one__img">
-                                    <img src="assets/images/blog/blog-1-1.jpg" alt="@@title" />
-                                    <img src="assets/images/blog/blog-1-1.jpg" alt="@@title" />
-                                    <Link href="blog-details" className="blog-one__link"><span className="sr-only"></span></Link>
-                                </div>
-                                <div className="blog-one__date">
-                                    <p>12<br/>Nov</p>
-                                </div>
-                            </div>
-                            <div className="blog-one__content">
-                                <div className="blog-one__user">
-                                    <p><span className="icon-user"></span>By Admin</p>
-                                </div>
-                                <h3 className="blog-one__title"><Link href="blog-details">Elase They Endures Pains to
-                                        Avoid The Worse Pains Taken </Link></h3>
-                                <Link href="blog-details" className="blog-one__learn-more">Learn More<span
-                                        className="icon-arrow-right"></span></Link>
-                            </div>
+                {loading ? (
+                    <div className="text-center py-5">
+                        <div className="spinner-border" role="status">
+                            <span className="sr-only">Loading...</span>
                         </div>
                     </div>
-            
-             
-        
-                </div>
+                ) : (
+                    <>
+                        <div className="row">
+                            {blogs.length > 0 ? (
+                                blogs.map((blog, index) => {
+                                    const publishedDate = new Date(blog.publishedDate || blog.createdAt)
+                                    const day = publishedDate.getDate()
+                                    const month = publishedDate.toLocaleDateString('en-US', { month: 'short' })
+                                    
+                                    return (
+                                        <div key={blog.id} className="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay={`${(index % 3 + 1) * 100}ms`}>
+                                            <div className="blog-one__single">
+                                                <div className="blog-one__img-box">
+                                                    <div className="blog-one__img">
+                                                        <img 
+                                                            src={getMediaURL(blog.featuredImage) || "assets/images/blog/blog-1-1.jpg"} 
+                                                            alt={blog.title} 
+                                                        />
+                                                        <Link href={`/blog-details?slug=${blog.slug}`} className="blog-one__link">
+                                                            <span className="sr-only">{blog.title}</span>
+                                                        </Link>
+                                                    </div>
+                                                    <div className="blog-one__date">
+                                                        <p>{day}<br/>{month}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="blog-one__content">
+                                                    <div className="blog-one__user">
+                                                        <p><span className="icon-user"></span>By {blog.author?.name || 'Admin'}</p>
+                                                    </div>
+                                                    <h3 className="blog-one__title">
+                                                        <Link href={`/blog-details?slug=${blog.slug}`}>
+                                                            {blog.title}
+                                                        </Link>
+                                                    </h3>
+                                                    {blog.excerpt && (
+                                                        <p className="blog-one__text">
+                                                            {getExcerpt(blog.excerpt, 100)}
+                                                        </p>
+                                                    )}
+                                                    <Link href={`/blog-details?slug=${blog.slug}`} className="blog-one__learn-more">
+                                                        Learn More<span className="icon-arrow-right"></span>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            ) : (
+                                <div className="col-12 text-center py-5">
+                                    <h3>No blogs found</h3>
+                                    <p>Check back later for new content!</p>
+                                </div>
+                            )}
+                        </div>
+                        
+                        {/* Pagination */}
+                        {totalPages > 1 && (
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="blog-page__pagination text-center mt-5">
+                                        <nav aria-label="Blog pagination">
+                                            <ul className="pagination justify-content-center">
+                                                {currentPage > 1 && (
+                                                    <li className="page-item">
+                                                        <button 
+                                                            className="page-link" 
+                                                            onClick={() => handlePageChange(currentPage - 1)}
+                                                        >
+                                                            Previous
+                                                        </button>
+                                                    </li>
+                                                )}
+                                                
+                                                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                                                    <li key={page} className={`page-item ${currentPage === page ? 'active' : ''}`}>
+                                                        <button 
+                                                            className="page-link" 
+                                                            onClick={() => handlePageChange(page)}
+                                                        >
+                                                            {page}
+                                                        </button>
+                                                    </li>
+                                                ))}
+                                                
+                                                {currentPage < totalPages && (
+                                                    <li className="page-item">
+                                                        <button 
+                                                            className="page-link" 
+                                                            onClick={() => handlePageChange(currentPage + 1)}
+                                                        >
+                                                            Next
+                                                        </button>
+                                                    </li>
+                                                )}
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </>
+                )}
             </div>
         </section>
         {/*Blog Page End*/}

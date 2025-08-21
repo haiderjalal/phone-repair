@@ -78,11 +78,11 @@ const MobileMenu = ({ isSidebar, handleMobileMenu, handleSidebar }) => {
                     <ul className="mobile-nav__contact list-unstyled">
                         <li>
                             <i className="fa fa-envelope"></i>
-                            <Link href="mailto:needhelp@elitecons.com">needhelp@elitecons.com</Link>
+                            <Link href="mailto:needhelp@elitecons.com">lambtonphonep@gmail.com</Link>
                         </li>
                         <li>
                             <i className="fa fa-phone-alt"></i>
-                            <Link href="tel:666-888-0000">666 888 0000</Link>
+                                  <Link href="tel:+61249578574">+61 2 4957 8574</Link>
                         </li>
                     </ul>
                     <div className="mobile-nav__top">

@@ -25,9 +25,7 @@ export default function Home() {
                                             <p><span className="icon-user"></span>By Admin</p>
                                         </div>
                                         <ul className="blog-list__meta list-unstyled">
-                                            <li>
-                                                <Link href="#"><span className="icon-speech-bubbles"></span>Comments (05)</Link>
-                                            </li>
+                                          
                                             <li>
                                                 <Link href="#"><span className="icon-clock"></span>4 Min Read</Link>
                                             </li>
@@ -59,9 +57,7 @@ export default function Home() {
                                             <p><span className="icon-user"></span>By Admin</p>
                                         </div>
                                         <ul className="blog-list__meta list-unstyled">
-                                            <li>
-                                                <Link href="#"><span className="icon-speech-bubbles"></span>Comments (05)</Link>
-                                            </li>
+                                           
                                             <li>
                                                 <Link href="#"><span className="icon-clock"></span>4 Min Read</Link>
                                             </li>
@@ -93,9 +89,7 @@ export default function Home() {
                                             <p><span className="icon-user"></span>By Admin</p>
                                         </div>
                                         <ul className="blog-list__meta list-unstyled">
-                                            <li>
-                                                <Link href="#"><span className="icon-speech-bubbles"></span>Comments (05)</Link>
-                                            </li>
+                                          
                                             <li>
                                                 <Link href="#"><span className="icon-clock"></span>4 Min Read</Link>
                                             </li>
@@ -115,75 +109,7 @@ export default function Home() {
                             {/*Blog Page Single End*/}
                         </div>
                     </div>
-                    <div className="col-xl-4 col-lg-5">
-                        <div className="sidebar">
-                            <div className="sidebar__single sidebar__search">
-                                <form action="#" className="sidebar__search-form">
-                                    <input type="search" placeholder="Search here"/>
-                                    <button type="submit"><i className="icon-search-interface-symbol"></i></button>
-                                </form>
-                            </div>
-                            <div className="sidebar__single sidebar__all-category">
-                                <h3 className="sidebar__title">Categories</h3>
-                                <ul className="sidebar__all-category-list list-unstyled">
-                                    <li>
-                                        <Link href="#">Industrial service<span>(04)</span></Link>
-                                    </li>
-                                    <li className="active">
-                                        <Link href="#">residential service<span>(06)</span></Link>
-                                    </li>
-                                    <li>
-                                        <Link href="#">Commercial services<span>(02)</span></Link>
-                                    </li>
-                                    <li>
-                                        <Link href="#">power solution<span>(04)</span></Link>
-                                    </li>
-                                    <li>
-                                        <Link href="#">upgrade old wiring<span>(07)</span></Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="sidebar__single sidebar__post">
-                                <h3 className="sidebar__title">Our Latest Post</h3>
-                                <ul className="sidebar__post-list list-unstyled">
-                                    <li>
-                                        <div className="sidebar__post-image">
-                                            <img src="assets/images/blog/lp-1-1.jpg" alt=""/>
-                                        </div>
-                                        <div className="sidebar__post-content">
-                                            <p className="sidebar__post-date">02 June 2024</p>
-                                            <h3>
-                                                <Link href="blog-details">Greater Pleasures or The Selection</Link>
-                                            </h3>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="sidebar__post-image">
-                                            <img src="assets/images/blog/lp-1-2.jpg" alt=""/>
-                                        </div>
-                                        <div className="sidebar__post-content">
-                                            <p className="sidebar__post-date">02 June 2024</p>
-                                            <h3>
-                                                <Link href="blog-details">He pleasures to secure greater</Link>
-                                            </h3>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="sidebar__post-image">
-                                            <img src="assets/images/blog/lp-1-3.jpg" alt=""/>
-                                        </div>
-                                        <div className="sidebar__post-content">
-                                            <p className="sidebar__post-date">02 June 2024</p>
-                                            <h3>
-                                                <Link href="blog-details">worse pains to the selection point.</Link>
-                                            </h3>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        
-                        </div>
-                    </div>
+               
                 </div>
             </div>
         </section>
