@@ -495,24 +495,7 @@ export default function Home() {
                             </div>
                             {/*End Single Sidebar Box*/}
 
-                            {/*Start Single Sidebar Box*/}
-                            <div className="shop-widget-single">
-                                <div className="title">
-                                    <h3>Product Tag</h3>
-                                    <span className="border-bx"></span>
-                                </div>
-                                <ul className="product-tag clearfix">
-                                    <li><Link href="#">Repair</Link></li>
-                                    <li><Link href="#">Red Service</Link></li>
-                                    <li><Link href="#">Equipment</Link></li>
-                                    <li><Link href="#">Maintenance</Link></li>
-                                    <li><Link href="#">equipment</Link></li>
-                                    <li><Link href="#">Office</Link></li>
-                                    <li><Link href="#">Ourdoor</Link></li>
-                                    <li><Link href="#">labels </Link></li>
-                                </ul>
-                            </div>
-                            {/*End Single Sidebar Box*/}
+                     
 
                         </div>
                     </div>
