@@ -4,7 +4,7 @@ export default function Home() {
 
     return (
         <>
-        <Layout headerStyle={2} footerStyle={1} breadcrumbTitle="Blog List">
+        <Layout headerStyle={3} footerStyle={3} breadcrumbTitle="Blog List">
         {/*Blog Page Start*/}
         <section className="blog-list">
             <div className="container">
@@ -181,16 +181,7 @@ export default function Home() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="sidebar__single sidebar__tags">
-                                <h3 className="sidebar__title">Popular Tags</h3>
-                                <div className="sidebar__tags-list">
-                                    <Link href="#">Growth Accelerator</Link>
-                                    <Link href="#">Management</Link>
-                                    <Link href="#">Analysis</Link>
-                                    <Link href="#">Planning</Link>
-                                    <Link href="#">Advisory Service</Link>
-                                </div>
-                            </div>
+                        
                         </div>
                     </div>
                 </div>
@@ -200,26 +191,27 @@ export default function Home() {
 
 
         {/*CTA One Start*/}
-        <section className="cta-one">
+          <section className="cta-one">
             <div className="container">
                 <div className="cta-one__inner">
                     <div className="cta-one__img">
-                        <img src="assets/images/resources/cta-one-img-1.png" alt=""/>
+                        <img src="assets/images/resources/cta.jpg" alt="" width={610} height={520} />
+
                     </div>
                     <div className="section-title text-left">
                         <div className="section-title__tagline-box">
                             <span className="section-title__tagline">Get To Know Us</span>
                         </div>
                         <div className="section-title__title-box sec-title-animation animation-style2">
-                            <h2 className="section-title__title title-animation">Save Money With Specials<br/> Discount Offer
+                            <h2 className="section-title__title title-animation">Expert Phone Repair<br/> Services Available
                             </h2>
                         </div>
                     </div>
-                    <p className="cta-one__text">Pleasures to secure other greater pleasures, or else he endures pains<br/>
-                        to avoid worse pains to the selection circumstances</p>
+                    <p className="cta-one__text">Get your phone repaired by certified technicians using genuine parts<br/>
+                        Fast, reliable service with warranty on all repairs</p>
                     <div className="cta-one__btn-and-call-box">
                         <div className="cta-one__btn-box">
-                            <Link href="contact" className="cta-one__btn thm-btn">Get Appointment</Link>
+                            <a href="https://wa.me/923556172662?text=Hello!%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener noreferrer" className="cta-one__btn thm-btn">Get Appointment</a>
                         </div>
                         <div className="cta-one__call-box">
                             <div className="icon">
@@ -227,7 +219,7 @@ export default function Home() {
                             </div>
                             <div className="content">
                                 <p>Make a call</p>
-                                <h4><Link href="tel:00554755242">00 55 475 5242</Link></h4>
+                                    <h4><Link href="tel:+61249578574">+61 2 4957 8574</Link></h4>
                             </div>
                         </div>
                     </div>
