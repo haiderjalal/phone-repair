@@ -55,14 +55,7 @@ const MobileMenu = ({ isSidebar, handleMobileMenu, handleSidebar }) => {
                                     </ul>
                                     <button className={isActive.key == 3 ? "expanded open" : ""} onClick={() => handleToggle(3)}><span className="fa fa-angle-right" /></button>
                                 </li>
-                                <li className={isActive.key == 4 ? "dropdown current" : "dropdown"}><Link href="/#">Shop</Link>
-                                    <ul style={{ display: isActive.key == 4 ? "block" : "none" }}>                                 
-                                        <li><Link href="shop">Products</Link></li>
-                                        <li><Link href="shop-details">Products Details</Link></li>
-                                  
-                                    </ul>
-                                    <button className={isActive.key == 4 ? "expanded open" : ""} onClick={() => handleToggle(4)}><span className="fa fa-angle-right" /></button>
-                                </li>
+                                <li><Link href="shop">Shop</Link></li>
                                 <li className={isActive.key == 5 ? "dropdown current" : "dropdown"}><Link href="/#">Blog</Link>
                                     <ul style={{ display: isActive.key == 5 ? "block" : "none" }}>                                 
                                         <li><Link href="blog">Blog</Link></li>

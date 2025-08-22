@@ -3,6 +3,13 @@ import Link from "next/link"
 import Layout from "@/components/layout/Layout"
 
 export default function Home() {
+    
+    const handleWhatsAppBuy = (productName, price) => {
+        const phoneNumber = "+1234567890" // Replace with your WhatsApp business number
+        const message = `Hi! I'm interested in buying:\n\nProduct: ${productName}\nPrice: ${price}\n\nPlease provide more details.`
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+        window.open(whatsappUrl, '_blank')
+    }
 
     return (
         <>
@@ -61,22 +68,30 @@ export default function Home() {
                                             </div>
                                         </div>
                                         <div className="content-box">
-                                            <div className="title">
-                                                <h3><Link href="shop">Digital multimeter</Link></h3>
+                                            <div className="title" style={{textAlign: 'left'}}>
+                                                <h3>Digital multimeter</h3>
                                             </div>
                                             <div className="bottom-box">
-                                                <ul className="rating-icon clearfix">
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                </ul>
-                                                <div className="btn-box">
-                                                    <Link href="shop">
-                                                        <i className="fa fa fa-cart-plus"></i>
-                                                        Add to Cart
-                                                    </Link>
+                                                <div className="btn-box" style={{display: 'flex', justifyContent: 'center'}}>
+                                                    <button 
+                                                        onClick={() => handleWhatsAppBuy('Digital multimeter', '$40.00')}
+                                                        style={{
+                                                            backgroundColor: '#25D366',
+                                                            color: 'white',
+                                                            border: 'none',
+                                                            padding: '10px 20px',
+                                                            borderRadius: '5px',
+                                                            cursor: 'pointer',
+                                                            fontSize: '14px',
+                                                            fontWeight: '500',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            gap: '8px'
+                                                        }}
+                                                    >
+                                                        <i className="fab fa-whatsapp"></i>
+                                                        Buy Now
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -87,9 +102,7 @@ export default function Home() {
                                 <div className="col-xl-6">
                                     <div className="shop-page-one-single">
                                         <div className="img-box">
-                                            <div className="discount">
-                                                <h6>10% off</h6>
-                                            </div>
+
                                             <img src="assets/images/shop/product-v1-2.jpg" alt="Image"/>
                                             <div className="overlay-icon clearfix">
                                                 <Link href="shop">
@@ -100,26 +113,34 @@ export default function Home() {
                                                 </Link>
                                             </div>
                                             <div className="rate-box">
-                                                <h4>$40.00 <del>$50.00</del></h4>
+                                                <h4>$40.00</h4>
                                             </div>
                                         </div>
                                         <div className="content-box">
-                                            <div className="title">
-                                                <h3><Link href="shop">Electric screwdriver</Link></h3>
+                                            <div className="title" style={{textAlign: 'left'}}>
+                                                <h3>Electric screwdriver</h3>
                                             </div>
                                             <div className="bottom-box">
-                                                <ul className="rating-icon clearfix">
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li className="color"><i className="fa fa fa-star"></i></li>
-                                                </ul>
-                                                <div className="btn-box">
-                                                    <Link href="shop">
-                                                        <i className="fa fa fa-cart-plus"></i>
-                                                        Add to Cart
-                                                    </Link>
+                                                <div className="btn-box" style={{display: 'flex', justifyContent: 'center'}}>
+                                                    <button 
+                                                        onClick={() => handleWhatsAppBuy('Electric screwdriver', '$40.00')}
+                                                        style={{
+                                                            backgroundColor: '#25D366',
+                                                            color: 'white',
+                                                            border: 'none',
+                                                            padding: '10px 20px',
+                                                            borderRadius: '5px',
+                                                            cursor: 'pointer',
+                                                            fontSize: '14px',
+                                                            fontWeight: '500',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            gap: '8px'
+                                                        }}
+                                                    >
+                                                        <i className="fab fa-whatsapp"></i>
+                                                        Buy Now
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -130,9 +151,7 @@ export default function Home() {
                                 <div className="col-xl-6">
                                     <div className="shop-page-one-single">
                                         <div className="img-box">
-                                            <div className="new">
-                                                <h6>new</h6>
-                                            </div>
+
                                             <img src="assets/images/shop/product-v1-3.jpg" alt="Image"/>
                                             <div className="overlay-icon clearfix">
                                                 <Link href="shop">
@@ -147,22 +166,30 @@ export default function Home() {
                                             </div>
                                         </div>
                                         <div className="content-box">
-                                            <div className="title">
-                                                <h3><Link href="shop">Multimeter parameters</Link></h3>
+                                            <div className="title" style={{textAlign: 'left'}}>
+                                                <h3>Multimeter parameters</h3>
                                             </div>
                                             <div className="bottom-box">
-                                                <ul className="rating-icon clearfix">
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                </ul>
-                                                <div className="btn-box">
-                                                    <Link href="shop">
-                                                        <i className="fa fa fa-cart-plus"></i>
-                                                        Add to Cart
-                                                    </Link>
+                                                <div className="btn-box" style={{display: 'flex', justifyContent: 'center'}}>
+                                                    <button 
+                                                        onClick={() => handleWhatsAppBuy('Multimeter parameters', '$40.00')}
+                                                        style={{
+                                                            backgroundColor: '#25D366',
+                                                            color: 'white',
+                                                            border: 'none',
+                                                            padding: '10px 20px',
+                                                            borderRadius: '5px',
+                                                            cursor: 'pointer',
+                                                            fontSize: '14px',
+                                                            fontWeight: '500',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            gap: '8px'
+                                                        }}
+                                                    >
+                                                        <i className="fab fa-whatsapp"></i>
+                                                        Buy Now
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -188,22 +215,30 @@ export default function Home() {
                                             </div>
                                         </div>
                                         <div className="content-box">
-                                            <div className="title">
-                                                <h3><Link href="shop">Cutting Pliers</Link></h3>
+                                            <div className="title" style={{textAlign: 'left'}}>
+                                                <h3>Cutting Pliers</h3>
                                             </div>
                                             <div className="bottom-box">
-                                                <ul className="rating-icon clearfix">
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li className="color"><i className="fa fa fa-star"></i></li>
-                                                </ul>
-                                                <div className="btn-box">
-                                                    <Link href="shop">
-                                                        <i className="fa fa fa-cart-plus"></i>
-                                                        Add to Cart
-                                                    </Link>
+                                            <div className="btn-box" style={{display: 'flex', justifyContent: 'center'}}>
+                                                    <button 
+                                                        onClick={() => handleWhatsAppBuy('Cutting Pliers', '$40.00')}
+                                                        style={{
+                                                            backgroundColor: '#25D366',
+                                                            color: 'white',
+                                                            border: 'none',
+                                                            padding: '10px 20px',
+                                                            borderRadius: '5px',
+                                                            cursor: 'pointer',
+                                                            fontSize: '14px',
+                                                            fontWeight: '500',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            gap: '8px'
+                                                        }}
+                                                    >
+                                                        <i className="fab fa-whatsapp"></i>
+                                                        Buy Now
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -229,22 +264,30 @@ export default function Home() {
                                             </div>
                                         </div>
                                         <div className="content-box">
-                                            <div className="title">
-                                                <h3><Link href="shop">Air conditioners Repair</Link></h3>
+                                            <div className="title" style={{textAlign: 'left'}}>
+                                                <h3>Air conditioners Repair</h3>
                                             </div>
                                             <div className="bottom-box">
-                                                <ul className="rating-icon clearfix">
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                </ul>
-                                                <div className="btn-box">
-                                                    <Link href="shop">
-                                                        <i className="fa fa fa-cart-plus"></i>
-                                                        Add to Cart
-                                                    </Link>
+                                                <div className="btn-box" style={{display: 'flex', justifyContent: 'center'}}>
+                                                    <button 
+                                                        onClick={() => handleWhatsAppBuy('Air conditioners Repair', '$40.00')}
+                                                        style={{
+                                                            backgroundColor: '#25D366',
+                                                            color: 'white',
+                                                            border: 'none',
+                                                            padding: '10px 20px',
+                                                            borderRadius: '5px',
+                                                            cursor: 'pointer',
+                                                            fontSize: '14px',
+                                                            fontWeight: '500',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            gap: '8px'
+                                                        }}
+                                                    >
+                                                        <i className="fab fa-whatsapp"></i>
+                                                        Buy Now
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -256,9 +299,7 @@ export default function Home() {
                                 <div className="col-xl-6">
                                     <div className="shop-page-one-single">
                                         <div className="img-box">
-                                            <div className="discount">
-                                                <h6>10% off</h6>
-                                            </div>
+
                                             <img src="assets/images/shop/product-v1-6.jpg" alt="Image"/>
                                             <div className="overlay-icon clearfix">
                                                 <Link href="shop">
@@ -269,26 +310,34 @@ export default function Home() {
                                                 </Link>
                                             </div>
                                             <div className="rate-box">
-                                                <h4>$40.00 <del>$50.00</del></h4>
+                                                <h4>$40.00</h4>
                                             </div>
                                         </div>
                                         <div className="content-box">
-                                            <div className="title">
-                                                <h3><Link href="shop">Instruments with toolbox</Link></h3>
+                                            <div className="title" style={{textAlign: 'left'}}>
+                                                <h3>Instruments with toolbox</h3>
                                             </div>
                                             <div className="bottom-box">
-                                                <ul className="rating-icon clearfix">
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li className="color"><i className="fa fa fa-star"></i></li>
-                                                </ul>
-                                                <div className="btn-box">
-                                                    <Link href="shop">
-                                                        <i className="fa fa fa-cart-plus"></i>
-                                                        Add to Cart
-                                                    </Link>
+                                                <div className="btn-box" style={{display: 'flex', justifyContent: 'center'}}>
+                                                    <button 
+                                                        onClick={() => handleWhatsAppBuy('Instruments with toolbox', '$40.00')}
+                                                        style={{
+                                                            backgroundColor: '#25D366',
+                                                            color: 'white',
+                                                            border: 'none',
+                                                            padding: '10px 20px',
+                                                            borderRadius: '5px',
+                                                            cursor: 'pointer',
+                                                            fontSize: '14px',
+                                                            fontWeight: '500',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            gap: '8px'
+                                                        }}
+                                                    >
+                                                        <i className="fab fa-whatsapp"></i>
+                                                        Buy Now
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -301,9 +350,7 @@ export default function Home() {
                                 <div className="col-xl-6">
                                     <div className="shop-page-one-single">
                                         <div className="img-box">
-                                            <div className="new">
-                                                <h6>new</h6>
-                                            </div>
+
                                             <img src="assets/images/shop/product-v1-3.jpg" alt="Image"/>
                                             <div className="overlay-icon clearfix">
                                                 <Link href="shop">
@@ -318,22 +365,30 @@ export default function Home() {
                                             </div>
                                         </div>
                                         <div className="content-box">
-                                            <div className="title">
-                                                <h3><Link href="shop">Multimeter parameters</Link></h3>
+                                            <div className="title" style={{textAlign: 'left'}}>
+                                                <h3>Multimeter parameters</h3>
                                             </div>
                                             <div className="bottom-box">
-                                                <ul className="rating-icon clearfix">
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                </ul>
-                                                <div className="btn-box">
-                                                    <Link href="shop">
-                                                        <i className="fa fa fa-cart-plus"></i>
-                                                        Add to Cart
-                                                    </Link>
+                                                <div className="btn-box" style={{display: 'flex', justifyContent: 'center'}}>
+                                                    <button 
+                                                        onClick={() => handleWhatsAppBuy('Multimeter parameters', '$40.00')}
+                                                        style={{
+                                                            backgroundColor: '#25D366',
+                                                            color: 'white',
+                                                            border: 'none',
+                                                            padding: '10px 20px',
+                                                            borderRadius: '5px',
+                                                            cursor: 'pointer',
+                                                            fontSize: '14px',
+                                                            fontWeight: '500',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            gap: '8px'
+                                                        }}
+                                                    >
+                                                        <i className="fab fa-whatsapp"></i>
+                                                        Buy Now
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -358,22 +413,30 @@ export default function Home() {
                                             </div>
                                         </div>
                                         <div className="content-box">
-                                            <div className="title">
-                                                <h3><Link href="shop">Cutting Pliers</Link></h3>
+                                            <div className="title" style={{textAlign: 'left'}}>
+                                                <h3>Cutting Pliers</h3>
                                             </div>
                                             <div className="bottom-box">
-                                                <ul className="rating-icon clearfix">
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li><i className="fa fa fa-star"></i></li>
-                                                    <li className="color"><i className="fa fa fa-star"></i></li>
-                                                </ul>
-                                                <div className="btn-box">
-                                                    <Link href="shop">
-                                                        <i className="fa fa fa-cart-plus"></i>
-                                                        Add to Cart
-                                                    </Link>
+                                                <div className="btn-box" style={{display: 'flex', justifyContent: 'center'}}>
+                                                    <button 
+                                                        onClick={() => handleWhatsAppBuy('Cutting Pliers', '$40.00')}
+                                                        style={{
+                                                            backgroundColor: '#25D366',
+                                                            color: 'white',
+                                                            border: 'none',
+                                                            padding: '10px 20px',
+                                                            borderRadius: '5px',
+                                                            cursor: 'pointer',
+                                                            fontSize: '14px',
+                                                            fontWeight: '500',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            gap: '8px'
+                                                        }}
+                                                    >
+                                                        <i className="fab fa-whatsapp"></i>
+                                                        Buy Now
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -433,28 +496,7 @@ export default function Home() {
                             </div>
                             {/*End Single Sidebar Box*/}
 
-                            {/*Start Single Sidebar Box*/}
-                            <div className="shop-widget-single">
-                                <div className="title">
-                                    <h3>Price Range</h3>
-                                    <div className="border-bx"></div>
-                                </div>
-                                <div className="price-ranger">
-                                    <div id="slider-range"></div>
-                                    <div className="ranger-min-max-block">
-                                        <div className="left clearfix">
-                                            <span>Price:</span>
-                                            <input type="text" className="min"/>
-                                            <span className="hipen">-</span>
-                                            <input type="text" className="max"/>
-                                        </div>
-                                        <div className="right">
-                                            <input type="submit" value="Filter"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {/*End Single Sidebar Box*/}
+
 
                             {/*Start Single Sidebar Box*/}
                             <div className="shop-widget-single">
