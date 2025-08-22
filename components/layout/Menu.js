@@ -33,13 +33,8 @@ export default function Menu() {
                       
                     </ul>
                 </li>
-                <li className="dropdown">
-                    <Link href="#">Shop</Link>
-                    <ul>
-                        <li><Link href="shop">Products</Link></li>
-                        <li><Link href="shop-details">Products Details</Link></li>
-                   
-                    </ul>
+                <li>
+                    <Link href="shop">Shop</Link>
                 </li>
                 <li className="dropdown">
                     <Link href="#">Blog</Link>
