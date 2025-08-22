@@ -18,8 +18,8 @@ export default function BlogDetailsPage() {
             fetchBlog()
             fetchRecentPosts()
         } else {
-            setError('No blog slug provided')
-            setLoading(false)
+            fetchFirstBlog()
+            fetchRecentPosts()
         }
     }, [slug])
 
@@ -34,6 +34,23 @@ export default function BlogDetailsPage() {
             }
         } catch (error) {
             console.error('Error fetching blog:', error)
+            setError('Failed to load blog')
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const fetchFirstBlog = async () => {
+        setLoading(true)
+        try {
+            const data = await getBlogs(1, 1) // Get first blog
+            if (data && data.docs && data.docs.length > 0) {
+                setBlog(data.docs[0])
+            } else {
+                setError('No blogs found')
+            }
+        } catch (error) {
+            console.error('Error fetching first blog:', error)
             setError('Failed to load blog')
         } finally {
             setLoading(false)
