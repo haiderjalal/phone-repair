@@ -1,6 +1,36 @@
+'use client'
+import { useState, useEffect } from 'react'
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-export default function Home() {
+import { getBlogs, getMediaURL, formatDate, getExcerpt } from '@/lib/api'
+
+export default function BlogListPage() {
+    const [blogs, setBlogs] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(0)
+
+    useEffect(() => {
+        fetchBlogs()
+    }, [currentPage])
+
+    const fetchBlogs = async () => {
+        setLoading(true)
+        try {
+            const data = await getBlogs(6, currentPage) // 6 blogs per page for list view
+            setBlogs(data.docs || [])
+            setTotalPages(data.totalPages || 0)
+        } catch (error) {
+            console.error('Error fetching blogs:', error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
 
     return (
         <>
@@ -11,102 +41,102 @@ export default function Home() {
                 <div className="row">
                     <div className="col-xl-8 col-lg-7">
                         <div className="blog-list__left">
-                            {/*Blog Page Single Start*/}
-                            <div className="blog-list__single">
-                                <div className="blog-list__img">
-                                    <img src="assets/images/blog/blog-list-1-1.jpg" alt=""/>
-                                    <div className="blog-list__date">
-                                        <p>12<br/>Nov</p>
+                            {loading ? (
+                                <div className="text-center py-5">
+                                    <div className="spinner-border" role="status">
+                                        <span className="sr-only">Loading...</span>
                                     </div>
                                 </div>
-                                <div className="blog-list__content">
-                                    <div className="blog-list__user-and-meta">
-                                        <div className="blog-list__user">
-                                            <p><span className="icon-user"></span>By Admin</p>
+                            ) : (
+                                <>
+                                    {blogs.length > 0 ? (
+                                        blogs.map((blog, index) => {
+                                            const blogDate = new Date(blog.createdAt)
+                                            const day = blogDate.getDate()
+                                            const month = blogDate.toLocaleDateString('en-US', { month: 'short' })
+                                            const featuredImage = blog.featuredImage ? getMediaURL(blog.featuredImage) : '/assets/images/blog/blog-list-1-1.jpg'
+                                            const excerpt = getExcerpt(blog.content, 150)
+                                            
+                                            return (
+                                                <div key={blog.id} className="blog-list__single">
+                                                    <div className="blog-list__img">
+                                                        <img src={featuredImage} alt={blog.title} />
+                                                        <div className="blog-list__date">
+                                                            <p>{day}<br/>{month}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="blog-list__content">
+                                                        <div className="blog-list__user-and-meta">
+                                                            <div className="blog-list__user">
+                                                                <p><span className="icon-user"></span>By {typeof blog.author === 'object' ? blog.author?.name || 'Admin' : blog.author || 'Admin'}</p>
+                                                            </div>
+                                                            <ul className="blog-list__meta list-unstyled">
+                                                                <li>
+                                                                    <Link href="#"><span className="icon-clock"></span>{blog.readTime || '5'} Min Read</Link>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <h3 className="blog-list__title">
+                                                            <Link href={`/blog-details?slug=${blog.slug}`}>{blog.title}</Link>
+                                                        </h3>
+                                                        <p className="blog-list__text">{excerpt}</p>
+                                                        <Link href={`/blog-details?slug=${blog.slug}`} className="blog-list__read-more">
+                                                            Learn More<span className="icon-arrow-right"></span>
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    ) : (
+                                        <div className="text-center py-5">
+                                            <h3>No blogs found</h3>
+                                            <p>Check back later for new blog posts.</p>
                                         </div>
-                                        <ul className="blog-list__meta list-unstyled">
-                                          
-                                            <li>
-                                                <Link href="#"><span className="icon-clock"></span>4 Min Read</Link>
-                                            </li>
+                                    )}
+                                </>
+                            )}
+                            
+                            {/* Pagination */}
+                            {totalPages > 1 && (
+                                <div className="blog-pagination">
+                                    <nav aria-label="Blog pagination">
+                                        <ul className="pagination justify-content-center">
+                                            {currentPage > 1 && (
+                                                <li className="page-item">
+                                                    <button 
+                                                        className="page-link" 
+                                                        onClick={() => handlePageChange(currentPage - 1)}
+                                                    >
+                                                        Previous
+                                                    </button>
+                                                </li>
+                                            )}
+                                            
+                                            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                                                <li key={page} className={`page-item ${currentPage === page ? 'active' : ''}`}>
+                                                    <button 
+                                                        className="page-link" 
+                                                        onClick={() => handlePageChange(page)}
+                                                    >
+                                                        {page}
+                                                    </button>
+                                                </li>
+                                            ))}
+                                            
+                                            {currentPage < totalPages && (
+                                                <li className="page-item">
+                                                    <button 
+                                                        className="page-link" 
+                                                        onClick={() => handlePageChange(currentPage + 1)}
+                                                    >
+                                                        Next
+                                                    </button>
+                                                </li>
+                                            )}
                                         </ul>
-                                    </div>
-                                    <h3 className="blog-list__title"><Link href="#">Elase They Endures Pains to Avoid The Worse
-                                            Pains Taken </Link></h3>
-                                    <p className="blog-list__text">Out enigma ad minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute inure dolor
-                                        in the reprehenderit in voluptate velit esse cillum dolore eu fugiat null
-                                        pariatur. Excepteur snit occaecat cupidatat non proident, sunt in culpa qui
-                                        officia deserunt mollit anim id est laborum.</p>
-                                    <Link href="#" className="blog-list__read-more">Learn More<span
-                                            className="icon-arrow-right"></span></Link>
+                                    </nav>
                                 </div>
-                            </div>
-                            {/*Blog Page Single End*/}
-                            {/*Blog Page Single Start*/}
-                            <div className="blog-list__single">
-                                <div className="blog-list__img">
-                                    <img src="assets/images/blog/blog-list-1-2.jpg" alt=""/>
-                                    <div className="blog-list__date">
-                                        <p>12<br/>Nov</p>
-                                    </div>
-                                </div>
-                                <div className="blog-list__content">
-                                    <div className="blog-list__user-and-meta">
-                                        <div className="blog-list__user">
-                                            <p><span className="icon-user"></span>By Admin</p>
-                                        </div>
-                                        <ul className="blog-list__meta list-unstyled">
-                                           
-                                            <li>
-                                                <Link href="#"><span className="icon-clock"></span>4 Min Read</Link>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 className="blog-list__title"><Link href="#">Secure to Other Greater Pleasures, or The
-                                            Selection Point. </Link></h3>
-                                    <p className="blog-list__text">Out enigma ad minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute inure dolor
-                                        in the reprehenderit in voluptate velit esse cillum dolore eu fugiat null
-                                        pariatur. Excepteur snit occaecat cupidatat non proident, sunt in culpa qui
-                                        officia deserunt mollit anim id est laborum.</p>
-                                    <Link href="#" className="blog-list__read-more">Learn More<span
-                                            className="icon-arrow-right"></span></Link>
-                                </div>
-                            </div>
-                            {/*Blog Page Single End*/}
-                            {/*Blog Page Single Start*/}
-                            <div className="blog-list__single">
-                                <div className="blog-list__img">
-                                    <img src="assets/images/blog/blog-list-1-3.jpg" alt=""/>
-                                    <div className="blog-list__date">
-                                        <p>12<br/>Nov</p>
-                                    </div>
-                                </div>
-                                <div className="blog-list__content">
-                                    <div className="blog-list__user-and-meta">
-                                        <div className="blog-list__user">
-                                            <p><span className="icon-user"></span>By Admin</p>
-                                        </div>
-                                        <ul className="blog-list__meta list-unstyled">
-                                          
-                                            <li>
-                                                <Link href="#"><span className="icon-clock"></span>4 Min Read</Link>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 className="blog-list__title"><Link href="#">The Selection Point Erase in Certain
-                                            Circumstances And Owing </Link></h3>
-                                    <p className="blog-list__text">Out enigma ad minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute inure dolor
-                                        in the reprehenderit in voluptate velit esse cillum dolore eu fugiat null
-                                        pariatur. Excepteur snit occaecat cupidatat non proident, sunt in culpa qui
-                                        officia deserunt mollit anim id est laborum.</p>
-                                    <Link href="#" className="blog-list__read-more">Learn More<span
-                                            className="icon-arrow-right"></span></Link>
-                                </div>
-                            </div>
-                            {/*Blog Page Single End*/}
+                            )}
                         </div>
                     </div>
                
@@ -121,7 +151,7 @@ export default function Home() {
             <div className="container">
                 <div className="cta-one__inner">
                     <div className="cta-one__img">
-                        <img src="assets/images/resources/cta.jpg" alt="" width={610} height={520} />
+                        <img src="assets/images/resources/cta.jpg" alt="" width={610} height={522} />
 
                     </div>
                     <div className="section-title text-left">

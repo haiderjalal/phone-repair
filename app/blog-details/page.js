@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-import { getBlogBySlug, getMediaURL, formatDate, getExcerpt } from '@/lib/api'
+import { getBlogBySlug, getBlogs, getMediaURL, formatDate, getExcerpt } from '@/lib/api'
 
 export default function BlogDetailsPage() {
     const [blog, setBlog] = useState(null)
+    const [recentPosts, setRecentPosts] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const searchParams = useSearchParams()
@@ -15,6 +16,7 @@ export default function BlogDetailsPage() {
     useEffect(() => {
         if (slug) {
             fetchBlog()
+            fetchRecentPosts()
         } else {
             setError('No blog slug provided')
             setLoading(false)
@@ -35,6 +37,15 @@ export default function BlogDetailsPage() {
             setError('Failed to load blog')
         } finally {
             setLoading(false)
+        }
+    }
+
+    const fetchRecentPosts = async () => {
+        try {
+            const response = await getBlogs(1, 5) // Get 5 recent posts
+            setRecentPosts(response.docs || [])
+        } catch (err) {
+            console.error('Error fetching recent posts:', err)
         }
     }
 
@@ -126,7 +137,7 @@ export default function BlogDetailsPage() {
                             <div className="blog-details__content">
                                 <div className="blog-details__user-and-meta">
                                     <div className="blog-details__user">
-                                        <p><span className="icon-user"></span>By {blog.author?.name || 'Admin'}</p>
+                                        <p><span className="icon-user"></span>By {typeof blog.author === 'object' ? blog.author?.name || 'Admin' : blog.author || 'Admin'}</p>
                                     </div>
                                     <ul className="blog-details__meta list-unstyled">
                                         {blog.readTime && (
@@ -164,7 +175,40 @@ export default function BlogDetailsPage() {
                             <div className="sidebar__single sidebar__post">
                                 <h3 className="sidebar__title">Recent Posts</h3>
                                 <div className="sidebar__post-list">
-                                    <p>Recent posts will be loaded here...</p>
+                                    {recentPosts.length > 0 ? (
+                                        recentPosts.map((post) => {
+                                            const postDate = new Date(post.publishedDate || post.createdAt)
+                                            return (
+                                                <div key={post.id} className="sidebar__post-single">
+                                                    <div className="sidebar__post-image">
+                                                        <img 
+                                                            src={getMediaURL(post.featuredImage) || "assets/images/blog/lp-1-1.jpg"} 
+                                                            alt={post.title}
+                                                            width={70}
+                                                            height={70}
+                                                        />
+                                                    </div>
+                                                    <div className="sidebar__post-content">
+                                                        <h3 className="sidebar__post-title">
+                                                            <Link href={`/blog-details?slug=${post.slug}`}>
+                                                                {post.title}
+                                                            </Link>
+                                                        </h3>
+                                                        <p className="sidebar__post-date">
+                                                            <span className="icon-calendar"></span>
+                                                            {postDate.toLocaleDateString('en-US', { 
+                                                                year: 'numeric', 
+                                                                month: 'short', 
+                                                                day: 'numeric' 
+                                                            })}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    ) : (
+                                        <p>No recent posts available.</p>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -179,7 +223,7 @@ export default function BlogDetailsPage() {
             <div className="container">
                 <div className="cta-one__inner">
                     <div className="cta-one__img">
-                        <img src="assets/images/resources/cta.jpg" alt="" width={610} height={520} />
+                        <img src="assets/images/resources/cta.jpg" alt="" width={610} height={522} />
                     </div>
                     <div className="section-title text-left">
                         <div className="section-title__tagline-box">
