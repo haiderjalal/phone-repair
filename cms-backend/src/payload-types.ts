@@ -203,7 +203,13 @@ export interface Blog {
    * Estimated reading time in minutes
    */
   readTime?: number | null;
+  /**
+   * SEO meta title for search engines
+   */
   metaTitle?: string | null;
+  /**
+   * SEO meta description for search engines
+   */
   metaDescription?: string | null;
   updatedAt: string;
   createdAt: string;

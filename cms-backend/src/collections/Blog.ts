@@ -89,14 +89,14 @@ export const Blog: CollectionConfig = {
       name: 'metaTitle',
       type: 'text',
       admin: {
-        group: 'SEO',
+        description: 'SEO meta title for search engines',
       },
     },
     {
       name: 'metaDescription',
       type: 'textarea',
       admin: {
-        group: 'SEO',
+        description: 'SEO meta description for search engines',
       },
     },
   ],
