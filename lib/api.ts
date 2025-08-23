@@ -1,13 +1,25 @@
+import type { BlogPost, BlogResponse, MediaItem } from '../types/blog'
+
 // Use production URL by default, fallback to localhost for development
 const API_URL = process.env.NEXT_PUBLIC_SERVER_URL || 
                 process.env.NEXT_PUBLIC_CMS_URL || 
                 'https://cms-backend-v26v.onrender.com'
 
+interface FetchOptions extends RequestInit {
+  cache?: RequestCache
+}
+
+interface BlogQueryOptions {
+  status?: 'draft' | 'published' | 'archived'
+  sort?: string
+  depth?: number
+}
+
 // Generic API fetch function with improved error handling
-async function fetchAPI(endpoint, options = {}) {
+async function fetchAPI<T = any>(endpoint: string, options: FetchOptions = {}): Promise<T | null> {
   const url = `${API_URL}/api${endpoint}`
   
-  const config = {
+  const config: FetchOptions = {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -48,7 +60,7 @@ async function fetchAPI(endpoint, options = {}) {
     console.error('API fetch error:', error)
     
     // For network errors, return null instead of empty data structure
-    if (error.name === 'TypeError' && error.message.includes('fetch')) {
+    if (error instanceof TypeError && error.message.includes('fetch')) {
       console.info('Network error: CMS backend is unreachable')
       return null
     }
@@ -59,7 +71,11 @@ async function fetchAPI(endpoint, options = {}) {
 }
 
 // Fetch all published blogs with improved query parameters
-export async function getBlogs(limit = 10, page = 1, options = {}) {
+export async function getBlogs(
+  limit: number = 10, 
+  page: number = 1, 
+  options: BlogQueryOptions = {}
+): Promise<BlogResponse> {
   try {
     const {
       status = 'published',
@@ -75,21 +91,43 @@ export async function getBlogs(limit = 10, page = 1, options = {}) {
       depth: depth.toString()
     })
     
-    const data = await fetchAPI(`/blog?${queryParams.toString()}`)
+    const data = await fetchAPI<BlogResponse>(`/blog?${queryParams.toString()}`)
     
     if (!data) {
-      return { docs: [], totalDocs: 0, totalPages: 0, page: 1, limit }
+      return { 
+        docs: [], 
+        totalDocs: 0, 
+        totalPages: 0, 
+        page: 1, 
+        limit,
+        pagingCounter: 1,
+        hasPrevPage: false,
+        hasNextPage: false,
+        prevPage: null,
+        nextPage: null
+      }
     }
     
     return data
   } catch (error) {
     console.error('Error fetching blogs:', error)
-    return { docs: [], totalDocs: 0, totalPages: 0, page: 1, limit }
+    return { 
+      docs: [], 
+      totalDocs: 0, 
+      totalPages: 0, 
+      page: 1, 
+      limit,
+      pagingCounter: 1,
+      hasPrevPage: false,
+      hasNextPage: false,
+      prevPage: null,
+      nextPage: null
+    }
   }
 }
 
 // Fetch a single blog by slug
-export async function getBlogBySlug(slug) {
+export async function getBlogBySlug(slug: string): Promise<BlogPost | null> {
   try {
     if (!slug) {
       console.warn('getBlogBySlug: slug parameter is required')
@@ -102,7 +140,7 @@ export async function getBlogBySlug(slug) {
       depth: '2'
     })
     
-    const data = await fetchAPI(`/blog?${queryParams.toString()}`)
+    const data = await fetchAPI<BlogResponse>(`/blog?${queryParams.toString()}`)
     
     if (!data || !data.docs || data.docs.length === 0) {
       return null
@@ -116,14 +154,14 @@ export async function getBlogBySlug(slug) {
 }
 
 // Fetch a single blog by ID
-export async function getBlogById(id) {
+export async function getBlogById(id: string): Promise<BlogPost | null> {
   try {
     if (!id) {
       console.warn('getBlogById: id parameter is required')
       return null
     }
     
-    const data = await fetchAPI(`/blog/${id}?depth=2`)
+    const data = await fetchAPI<BlogPost>(`/blog/${id}?depth=2`)
     return data
   } catch (error) {
     console.error('Error fetching blog by ID:', error)
@@ -132,7 +170,7 @@ export async function getBlogById(id) {
 }
 
 // Fetch featured blogs for homepage
-export async function getFeaturedBlogs(limit = 3) {
+export async function getFeaturedBlogs(limit: number = 3): Promise<BlogPost[]> {
   try {
     const queryParams = new URLSearchParams({
       'where[status][equals]': 'published',
@@ -141,7 +179,7 @@ export async function getFeaturedBlogs(limit = 3) {
       depth: '2'
     })
     
-    const data = await fetchAPI(`/blog?${queryParams.toString()}`)
+    const data = await fetchAPI<BlogResponse>(`/blog?${queryParams.toString()}`)
     
     if (!data || !data.docs) {
       return []
@@ -155,11 +193,26 @@ export async function getFeaturedBlogs(limit = 3) {
 }
 
 // Fetch blogs by category
-export async function getBlogsByCategory(categorySlug, limit = 10, page = 1) {
+export async function getBlogsByCategory(
+  categorySlug: string, 
+  limit: number = 10, 
+  page: number = 1
+): Promise<BlogResponse> {
   try {
     if (!categorySlug) {
       console.warn('getBlogsByCategory: categorySlug parameter is required')
-      return { docs: [], totalDocs: 0, totalPages: 0, page: 1, limit }
+      return { 
+        docs: [], 
+        totalDocs: 0, 
+        totalPages: 0, 
+        page: 1, 
+        limit,
+        pagingCounter: 1,
+        hasPrevPage: false,
+        hasNextPage: false,
+        prevPage: null,
+        nextPage: null
+      }
     }
     
     const queryParams = new URLSearchParams({
@@ -171,25 +224,62 @@ export async function getBlogsByCategory(categorySlug, limit = 10, page = 1) {
       depth: '2'
     })
     
-    const data = await fetchAPI(`/blog?${queryParams.toString()}`)
+    const data = await fetchAPI<BlogResponse>(`/blog?${queryParams.toString()}`)
     
     if (!data) {
-      return { docs: [], totalDocs: 0, totalPages: 0, page: 1, limit }
+      return { 
+        docs: [], 
+        totalDocs: 0, 
+        totalPages: 0, 
+        page: 1, 
+        limit,
+        pagingCounter: 1,
+        hasPrevPage: false,
+        hasNextPage: false,
+        prevPage: null,
+        nextPage: null
+      }
     }
     
     return data
   } catch (error) {
     console.error('Error fetching blogs by category:', error)
-    return { docs: [], totalDocs: 0, totalPages: 0, page: 1, limit }
+    return { 
+      docs: [], 
+      totalDocs: 0, 
+      totalPages: 0, 
+      page: 1, 
+      limit,
+      pagingCounter: 1,
+      hasPrevPage: false,
+      hasNextPage: false,
+      prevPage: null,
+      nextPage: null
+    }
   }
 }
 
 // Fetch blogs by tag
-export async function getBlogsByTag(tagSlug, limit = 10, page = 1) {
+export async function getBlogsByTag(
+  tagSlug: string, 
+  limit: number = 10, 
+  page: number = 1
+): Promise<BlogResponse> {
   try {
     if (!tagSlug) {
       console.warn('getBlogsByTag: tagSlug parameter is required')
-      return { docs: [], totalDocs: 0, totalPages: 0, page: 1, limit }
+      return { 
+        docs: [], 
+        totalDocs: 0, 
+        totalPages: 0, 
+        page: 1, 
+        limit,
+        pagingCounter: 1,
+        hasPrevPage: false,
+        hasNextPage: false,
+        prevPage: null,
+        nextPage: null
+      }
     }
     
     const queryParams = new URLSearchParams({
@@ -201,25 +291,62 @@ export async function getBlogsByTag(tagSlug, limit = 10, page = 1) {
       depth: '2'
     })
     
-    const data = await fetchAPI(`/blog?${queryParams.toString()}`)
+    const data = await fetchAPI<BlogResponse>(`/blog?${queryParams.toString()}`)
     
     if (!data) {
-      return { docs: [], totalDocs: 0, totalPages: 0, page: 1, limit }
+      return { 
+        docs: [], 
+        totalDocs: 0, 
+        totalPages: 0, 
+        page: 1, 
+        limit,
+        pagingCounter: 1,
+        hasPrevPage: false,
+        hasNextPage: false,
+        prevPage: null,
+        nextPage: null
+      }
     }
     
     return data
   } catch (error) {
     console.error('Error fetching blogs by tag:', error)
-    return { docs: [], totalDocs: 0, totalPages: 0, page: 1, limit }
+    return { 
+      docs: [], 
+      totalDocs: 0, 
+      totalPages: 0, 
+      page: 1, 
+      limit,
+      pagingCounter: 1,
+      hasPrevPage: false,
+      hasNextPage: false,
+      prevPage: null,
+      nextPage: null
+    }
   }
 }
 
 // Search blogs with query
-export async function searchBlogs(query, limit = 10, page = 1) {
+export async function searchBlogs(
+  query: string, 
+  limit: number = 10, 
+  page: number = 1
+): Promise<BlogResponse> {
   try {
     if (!query || query.trim() === '') {
       console.warn('searchBlogs: query parameter is required')
-      return { docs: [], totalDocs: 0, totalPages: 0, page: 1, limit }
+      return { 
+        docs: [], 
+        totalDocs: 0, 
+        totalPages: 0, 
+        page: 1, 
+        limit,
+        pagingCounter: 1,
+        hasPrevPage: false,
+        hasNextPage: false,
+        prevPage: null,
+        nextPage: null
+      }
     }
     
     const queryParams = new URLSearchParams({
@@ -232,29 +359,51 @@ export async function searchBlogs(query, limit = 10, page = 1) {
       depth: '1'
     })
     
-    const data = await fetchAPI(`/blog?${queryParams.toString()}`)
+    const data = await fetchAPI<BlogResponse>(`/blog?${queryParams.toString()}`)
     
     if (!data) {
-      return { docs: [], totalDocs: 0, totalPages: 0, page: 1, limit }
+      return { 
+        docs: [], 
+        totalDocs: 0, 
+        totalPages: 0, 
+        page: 1, 
+        limit,
+        pagingCounter: 1,
+        hasPrevPage: false,
+        hasNextPage: false,
+        prevPage: null,
+        nextPage: null
+      }
     }
     
     return data
   } catch (error) {
     console.error('Error searching blogs:', error)
-    return { docs: [], totalDocs: 0, totalPages: 0, page: 1, limit }
+    return { 
+      docs: [], 
+      totalDocs: 0, 
+      totalPages: 0, 
+      page: 1, 
+      limit,
+      pagingCounter: 1,
+      hasPrevPage: false,
+      hasNextPage: false,
+      prevPage: null,
+      nextPage: null
+    }
   }
 }
 
 // Get unique categories from blog posts
-export async function getUniqueCategories() {
+export async function getUniqueCategories(): Promise<string[]> {
   try {
-    const data = await fetchAPI('/blog?where[status][equals]=published&limit=1000')
+    const data = await fetchAPI<BlogResponse>('/blog?where[status][equals]=published&limit=1000')
     
     if (!data || !data.docs) {
       return []
     }
     
-    const categories = new Set()
+    const categories = new Set<string>()
     data.docs.forEach(blog => {
       if (blog.categories && Array.isArray(blog.categories)) {
         blog.categories.forEach(cat => {
@@ -273,15 +422,15 @@ export async function getUniqueCategories() {
 }
 
 // Get unique tags from blog posts
-export async function getUniqueTags() {
+export async function getUniqueTags(): Promise<string[]> {
   try {
-    const data = await fetchAPI('/blog?where[status][equals]=published&limit=1000')
+    const data = await fetchAPI<BlogResponse>('/blog?where[status][equals]=published&limit=1000')
     
     if (!data || !data.docs) {
       return []
     }
     
-    const tags = new Set()
+    const tags = new Set<string>()
     data.docs.forEach(blog => {
       if (blog.tags && Array.isArray(blog.tags)) {
         blog.tags.forEach(tag => {
@@ -300,15 +449,15 @@ export async function getUniqueTags() {
 }
 
 // Get unique authors from blog posts
-export async function getUniqueAuthors() {
+export async function getUniqueAuthors(): Promise<string[]> {
   try {
-    const data = await fetchAPI('/blog?where[status][equals]=published&limit=1000')
+    const data = await fetchAPI<BlogResponse>('/blog?where[status][equals]=published&limit=1000')
     
     if (!data || !data.docs) {
       return []
     }
     
-    const authors = new Set()
+    const authors = new Set<string>()
     data.docs.forEach(blog => {
       if (blog.author && blog.author.name) {
         authors.add(blog.author.name)
@@ -323,7 +472,7 @@ export async function getUniqueAuthors() {
 }
 
 // Helper function to get media URL with better handling
-export function getMediaURL(media) {
+export function getMediaURL(media: string | MediaItem | null | undefined): string | null {
   if (!media) return null
   
   // Handle string URLs (media ID or direct URL)
@@ -349,7 +498,12 @@ export function getMediaURL(media) {
 }
 
 // Helper function to get optimized media URL with size parameters
-export function getOptimizedMediaURL(media, width = null, height = null, quality = 80) {
+export function getOptimizedMediaURL(
+  media: string | MediaItem | null | undefined, 
+  width: number | null = null, 
+  height: number | null = null, 
+  quality: number = 80
+): string | null {
   const baseUrl = getMediaURL(media)
   if (!baseUrl) return null
   
@@ -369,7 +523,7 @@ export function getOptimizedMediaURL(media, width = null, height = null, quality
 }
 
 // Helper function to format date
-export function formatDate(dateString) {
+export function formatDate(dateString: string | null | undefined): string {
   if (!dateString) return ''
   
   const date = new Date(dateString)
@@ -381,12 +535,12 @@ export function formatDate(dateString) {
 }
 
 // Helper function to get excerpt from rich text content with improved text extraction
-export function getExcerpt(content, maxLength = 150) {
+export function getExcerpt(content: any, maxLength: number = 150): string {
   if (!content) return ''
   
   // If content is rich text (Lexical), extract plain text
   if (typeof content === 'object' && content.root) {
-    const extractText = (node) => {
+    const extractText = (node: any): string => {
       if (node.type === 'text') {
         return node.text || ''
       }
@@ -420,7 +574,7 @@ export function getExcerpt(content, maxLength = 150) {
 }
 
 // Helper function to calculate reading time
-export function calculateReadingTime(content) {
+export function calculateReadingTime(content: any): number {
   if (!content) return 1
   
   const text = getExcerpt(content, 10000) // Get full text
@@ -432,17 +586,21 @@ export function calculateReadingTime(content) {
 }
 
 // Helper function to validate blog data
-export function validateBlogData(blog) {
+export function validateBlogData(blog: any): blog is BlogPost {
   if (!blog || typeof blog !== 'object') {
     return false
   }
   
   const requiredFields = ['id', 'title', 'slug', 'content', 'status']
-  return requiredFields.every(field => blog.hasOwnProperty(field) && blog[field] !== null && blog[field] !== undefined)
+  return requiredFields.every(field => 
+    blog.hasOwnProperty(field) && 
+    blog[field] !== null && 
+    blog[field] !== undefined
+  )
 }
 
 // Helper function to get blog URL
-export function getBlogURL(blog) {
+export function getBlogURL(blog: BlogPost | { slug?: string } | null): string {
   if (!blog || !blog.slug) {
     return '#'
   }
