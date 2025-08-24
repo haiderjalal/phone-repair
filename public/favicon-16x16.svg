@@ -1,0 +1,22 @@
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="phoneGradientSmall" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Phone Icon -->
+  <rect x="2" y="1" width="12" height="14" rx="2" ry="2" fill="url(#phoneGradientSmall)"/>
+  
+  <!-- Screen -->
+  <rect x="3" y="3" width="10" height="8" rx="1" ry="1" fill="#F8FAFC"/>
+  
+  <!-- Home Button -->
+  <circle cx="8" cy="13" r="1" fill="#F8FAFC"/>
+  
+  <!-- Repair Symbol -->
+  <g transform="translate(9, 6)">
+    <path d="M1 1 L3 3 M3 1 L1 3" stroke="#10B981" stroke-width="0.8" stroke-linecap="round"/>
+  </g>
+</svg>

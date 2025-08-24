@@ -14,8 +14,8 @@ export default function Footer1() {
                         <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
                             <div className="footer-widget__column footer-widget__about">
                                 <div className="footer-widget__logo">
-                                    <Link href="/"><img src="assets/images/resources/footer-logo-1.png"
-                                            alt=""/></Link>
+                                    <Link href="/"><img src="assets/images/resources/footer-logo-1.svg"
+                                            alt="Lambton Phone"/></Link>
                                 </div>
                                 <p className="footer-widget__about-text">Secure other greater pleasures, or else he
                                     endures<br/>
