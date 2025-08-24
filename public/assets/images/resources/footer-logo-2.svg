@@ -1,0 +1,29 @@
+<svg width="180" height="50" viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Phone Icon -->
+  <g transform="translate(5, 5)">
+    <!-- Phone Body -->
+    <rect x="0" y="0" width="20" height="36" rx="3" ry="3" fill="#2AB97E" stroke="#D1D5DB" stroke-width="1"/>
+    
+    <!-- Screen -->
+    <rect x="2" y="5" width="16" height="22" rx="1" ry="1" fill="#374151"/>
+    
+    <!-- Home Button -->
+    <circle cx="10" cy="31" r="1.5" fill="#374151"/>
+    
+    <!-- Speaker -->
+    <rect x="6" y="2" width="8" height="1.5" rx="0.5" ry="0.5" fill="#374151"/>
+    
+    <!-- Repair Symbol -->
+    <g transform="translate(12, 16)">
+      <path d="M1.5 1.5 L4.5 4.5 M4.5 1.5 L1.5 4.5" stroke="#F59E0B" stroke-width="1" stroke-linecap="round"/>
+      <circle cx="3" cy="3" r="4" fill="none" stroke="#F59E0B" stroke-width="0.8" opacity="0.4"/>
+    </g>
+  </g>
+  
+  <!-- Company Name -->
+  <text x="35" y="20" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2AB97E">Lambton</text>
+  <text x="35" y="35" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#2AB97E">Phone</text>
+  
+  <!-- Tagline -->
+  <text x="110" y="28" font-family="Arial, sans-serif" font-size="9" fill="#2AB97E">Expert Repair</text>
+</svg>

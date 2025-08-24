@@ -48,7 +48,7 @@ export default function Header2({ scroll, handleMobileMenu }) {
                         <div className="main-menu-two__wrapper-inner">
                             <div className="main-menu-two__left">
                                 <div className="main-menu-two__logo">
-                                    <Link href="/"><img src="assets/images/resources/logo-1.png" alt=""/></Link>
+                                    <Link href="/"><img src="assets/images/resources/logo-1.svg" alt="Lambton Phone"/></Link>
                                 </div>
                                 <div className="main-menu-two__main-menu-box">
                                     <Link href="#" className="mobile-nav__toggler" onClick={handleMobileMenu}><i className="fa fa-bars"></i></Link>
@@ -83,7 +83,7 @@ export default function Header2({ scroll, handleMobileMenu }) {
                         <div className="main-menu-two__wrapper-inner">
                             <div className="main-menu-two__left">
                                 <div className="main-menu-two__logo">
-                                    <Link href="/"><img src="assets/images/resources/logo-1.png" alt=""/></Link>
+                                    <Link href="/"><img src="assets/images/resources/logo-1.svg" alt="Lambton Phone"/></Link>
                                 </div>
                                 <div className="main-menu-two__main-menu-box">
                                     <Link href="#" className="mobile-nav__toggler" onClick={handleMobileMenu}><i className="fa fa-bars"></i></Link>
