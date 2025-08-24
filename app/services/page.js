@@ -18,14 +18,13 @@ export default function Home() {
                     <div className="col-xl-4 col-lg-6 wow fadeInLeft" data-wow-delay="100ms">
                         <div className="services-two__single">
                             <div className="services-two__icon">
-                                <span className="icon-socket"></span>
+                                <img src="assets/images/services/phone-service.jpg" alt="Phone Repair" style={{width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px'}} />
                             </div>
                             <p className="services-two__sub-title">Service Type 1</p>
-                            <h3 className="services-two__title"><Link href="electric-panel-repair">Electric Repair</Link>
+                            <h3 className="services-two__title"><Link href="phone-repair">Phone Repair</Link>
                             </h3>
-                            <p className="services-two__text">The wise man therefore always desi holds in these matters
-                                electri to this of principle selection</p>
-                            <Link href="electric-panel-repair" className="services-two__learn-more">Learn More<span
+                            <p className="services-two__text">Quick and reliable iPhone repair services to fix screens, batteries, and other issues efficiently.</p>
+                            <Link href="phone-repair" className="services-two__learn-more">Learn More<span
                                     className="icon-arrow-right"></span></Link>
                         </div>
                     </div>
@@ -34,14 +33,13 @@ export default function Home() {
                     <div className="col-xl-4 col-lg-6 wow fadeInUp" data-wow-delay="300ms">
                         <div className="services-two__single">
                             <div className="services-two__icon">
-                                <span className="icon-ceiling-lamp"></span>
+                                <img src="assets/images/services/laptop-service.jpg" alt="Laptop Repair" style={{width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px'}} />
                             </div>
                             <p className="services-two__sub-title">Service Type 2</p>
-                            <h3 className="services-two__title"><Link href="lighting-fixtures">Lighting & Fixtures</Link>
+                            <h3 className="services-two__title"><Link href="laptop-repair">Laptop Repair</Link>
                             </h3>
-                            <p className="services-two__text">The wise man therefore always desi holds in these matters
-                                electri to this of principle selection</p>
-                            <Link href="lighting-fixtures" className="services-two__learn-more">Learn More<span
+                            <p className="services-two__text">Reliable Laptop repair solutions for hardware and software issues, keeping your device running.</p>
+                            <Link href="laptop-repair" className="services-two__learn-more">Learn More<span
                                     className="icon-arrow-right"></span></Link>
                         </div>
                     </div>
@@ -50,14 +48,13 @@ export default function Home() {
                     <div className="col-xl-4 col-lg-6 wow fadeInRight" data-wow-delay="500ms">
                         <div className="services-two__single">
                             <div className="services-two__icon">
-                                <span className="icon-ceiling-lamp-2"></span>
+                                <img src="assets/images/services/tablet-service.jpg" alt="Tablet Repair" style={{width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px'}} />
                             </div>
                             <p className="services-two__sub-title">Service Type 3</p>
-                            <h3 className="services-two__title"><Link href="maintenance-service">Maintenance Service</Link>
+                            <h3 className="services-two__title"><Link href="tablet-repair">Tablet Repair</Link>
                             </h3>
-                            <p className="services-two__text">The wise man therefore always desi holds in these matters
-                                electri to this of principle selection</p>
-                            <Link href="maintenance-service" className="services-two__learn-more">Learn More<span
+                            <p className="services-two__text">Expert Tablet repair for cracked screens and battery issues, ensuring your device runs smoothly.</p>
+                            <Link href="tablet-repair" className="services-two__learn-more">Learn More<span
                                     className="icon-arrow-right"></span></Link>
                         </div>
                     </div>
@@ -66,51 +63,18 @@ export default function Home() {
                     <div className="col-xl-4 col-lg-6 wow fadeInLeft" data-wow-delay="700ms">
                         <div className="services-two__single">
                             <div className="services-two__icon">
-                                <span className="icon-smart-lighting"></span>
+                                <img src="assets/images/services/console-service.jpg" alt="Console Repair" style={{width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px'}} />
                             </div>
                             <p className="services-two__sub-title">Service Type 4</p>
-                            <h3 className="services-two__title"><Link href="short-circuit-repair">Short circuit repair</Link>
+                            <h3 className="services-two__title"><Link href="console-repair">Console Repair</Link>
                             </h3>
-                            <p className="services-two__text">The wise man therefore always desi holds in these matters
-                                electri to this of principle selection</p>
-                            <Link href="short-circuit-repair" className="services-two__learn-more">Learn More<span
+                            <p className="services-two__text">Expert Console repair for gaming consoles, ensuring smooth performance and functionality.</p>
+                            <Link href="console-repair" className="services-two__learn-more">Learn More<span
                                     className="icon-arrow-right"></span></Link>
                         </div>
                     </div>
                     {/*Services Two Single End*/}
-                    {/*Services Two Single Start*/}
-                    <div className="col-xl-4 col-lg-6 wow fadeInUp" data-wow-delay="900ms">
-                        <div className="services-two__single">
-                            <div className="services-two__icon">
-                                <span className="icon-ceiling-lamp"></span>
-                            </div>
-                            <p className="services-two__sub-title">Service Type 5</p>
-                            <h3 className="services-two__title"><Link href="commercial-services">Commercial services</Link>
-                            </h3>
-                            <p className="services-two__text">The wise man therefore always desi holds in these matters
-                                electri to this of principle selection</p>
-                            <Link href="commercial-services" className="services-two__learn-more">Learn More<span
-                                    className="icon-arrow-right"></span></Link>
-                        </div>
-                    </div>
-                    {/*Services Two Single End*/}
-                    {/*Services Two Single Start*/}
-                    <div className="col-xl-4 col-lg-6 wow fadeInRight" data-wow-delay="1100ms">
-                        <div className="services-two__single">
-                            <div className="services-two__icon">
-                                <span className="icon-settings-1"></span>
-                            </div>
-                            <p className="services-two__sub-title">Service Type 6</p>
-                            <h3 className="services-two__title"><Link href="installing-ceiling-fan">installing a ceiling
-                                    fan</Link>
-                            </h3>
-                            <p className="services-two__text">The wise man therefore always desi holds in these matters
-                                electri to this of principle selection</p>
-                            <Link href="installing-ceiling-fan" className="services-two__learn-more">Learn More<span
-                                    className="icon-arrow-right"></span></Link>
-                        </div>
-                    </div>
-                    {/*Services Two Single End*/}
+               
                 </div>
             </div>
         </section>

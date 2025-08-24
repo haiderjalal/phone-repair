@@ -14,14 +14,24 @@ export default function BlogPage() {
         fetchBlogs()
     }, [currentPage])
 
+    const [error, setError] = useState(null)
+
     const fetchBlogs = async () => {
         setLoading(true)
+        setError(null)
         try {
             const data = await getBlogs(9, currentPage) // 9 blogs per page (3x3 grid)
-            setBlogs(data.docs || [])
-            setTotalPages(data.totalPages || 0)
+            if (data === null) {
+                setError('Unable to connect to the blog service. Please try again later.')
+                setBlogs([])
+                setTotalPages(0)
+            } else {
+                setBlogs(data.docs || [])
+                setTotalPages(data.totalPages || 0)
+            }
         } catch (error) {
             console.error('Error fetching blogs:', error)
+            setError('An error occurred while loading blogs. Please try again later.')
         } finally {
             setLoading(false)
         }
@@ -47,7 +57,21 @@ export default function BlogPage() {
                 ) : (
                     <>
                         <div className="row">
-                            {blogs.length > 0 ? (
+                            {error ? (
+                                <div className="col-12 text-center py-5">
+                                    <div className="alert alert-warning" role="alert">
+                                        <h4 className="alert-heading">Service Temporarily Unavailable</h4>
+                                        <p>{error}</p>
+                                        <hr />
+                                        <button 
+                                            className="btn btn-primary" 
+                                            onClick={() => fetchBlogs()}
+                                        >
+                                            Try Again
+                                        </button>
+                                    </div>
+                                </div>
+                            ) : blogs.length > 0 ? (
                                 blogs.map((blog, index) => {
                                     const publishedDate = new Date(blog.publishedDate || blog.createdAt)
                                     const day = publishedDate.getDate()
