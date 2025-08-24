@@ -58,9 +58,11 @@ export default function Banner() {
                                         <p className="main-slider-three__sub-title">Based in NewCastle</p>
                                     </div>
                                     <h2 className="main-slider-three__title">We Are Experts At <br/> Cell Phone Repair!</h2>
-                                    <p className="main-slider-three__text">We have been operating for over a decade, providing
-                                        top-notch services We have been <br/> operating for over a decade lenitive antique
-                                        corrupt quo quad molestation</p>
+
+                                    <p className="main-slider-three__text">Need Cell Phone repairs? Trust us for quick, affordable service. <br/> 
+                                    Our skilled technicians provide top-notch services to get your device back up & running. 
+                                    <br/> Dont let a broken iPhone slow you down — bring it in today!</p>
+
                                     <div className="main-slider-three__btn-box">
                                         <Link href="services" className="main-slider-three__btn thm-btn">Repair My Device</Link>
                                     </div>

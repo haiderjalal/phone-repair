@@ -6,17 +6,25 @@ import { getFeaturedBlogs, getMediaURL, formatDate } from '@/lib/api'
 export default function Blog() {
     const [blogs, setBlogs] = useState([])
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
         fetchBlogs()
     }, [])
 
     const fetchBlogs = async () => {
+        setLoading(true)
+        setError(null)
         try {
             const data = await getFeaturedBlogs(3)
-            setBlogs(data)
+            if (data === null || (Array.isArray(data) && data.length === 0)) {
+                setBlogs([])
+            } else {
+                setBlogs(data)
+            }
         } catch (error) {
             console.error('Error fetching featured blogs:', error)
+            setError('Unable to load latest blog posts')
         } finally {
             setLoading(false)
         }

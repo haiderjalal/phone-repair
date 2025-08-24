@@ -27,7 +27,9 @@ export default function BlogDetailsPage() {
         setLoading(true)
         try {
             const data = await getBlogBySlug(slug)
-            if (data) {
+            if (data === null) {
+                setError('Unable to connect to the blog service. Please try again later.')
+            } else if (data) {
                 setBlog(data)
             } else {
                 setError('Blog not found')
@@ -44,7 +46,9 @@ export default function BlogDetailsPage() {
         setLoading(true)
         try {
             const data = await getBlogs(1, 1) // Get first blog
-            if (data && data.docs && data.docs.length > 0) {
+            if (data === null) {
+                setError('Unable to connect to the blog service. Please try again later.')
+            } else if (data && data.docs && data.docs.length > 0) {
                 setBlog(data.docs[0])
             } else {
                 setError('No blogs found')

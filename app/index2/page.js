@@ -2,7 +2,7 @@
 import Layout from "@/components/layout/Layout"
 import About from "@/components/sections/home2/About"
 import Banner from "@/components/sections/home2/Banner"
-import Blog from "@/components/sections/home2/Blog"
+// import Blog from "@/components/sections/home2/Blog" // Component not found
 import Brand from "@/components/sections/home2/Brand"
 import Contactcounter from "@/components/sections/home2/Contactcounter"
 import Faq from "@/components/sections/home2/Faq"
@@ -14,7 +14,7 @@ export default function Home() {
 
     return (
         <>
-            <Layout headerStyle={2} footerStyle={2}>
+            <Layout headerStyle={3} footerStyle={3}>
                 <Banner />
                 <Services />
                 <About />
@@ -23,7 +23,7 @@ export default function Home() {
                 <Team />
                 <Testimonial />
                 <Faq />
-                <Blog />
+                {/* <Blog /> */}
                 <Brand />
             </Layout>
         </>

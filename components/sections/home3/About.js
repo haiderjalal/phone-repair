@@ -76,7 +76,7 @@ export default function About() {
                                     </div>
                                 </li>
                             </ul>
-                            <p className="about-three__text-2">From cracked screens to water damage, battery replacements to software issues, Lambton Phones has been the go-to repair shop for residents and businesses in Lambton. Our certified technicians use only high-quality parts and provide comprehensive warranties on all repairs.</p>
+                            <p className="about-three__text-2">Expert cell phone repairs in Lambton. For screens, batteries, and more. Same-day service available. 24/7 emergency repair service. Quick turnaround and competitive prices. Guaranteed 1-hour iPhone screen replacement. Samsung Galaxy repair specialists for cracked screens and water damage. Fast water damage repair with high success rate at affordable prices. Repair, dont replace. </p>
                             <Link href="contact" className="thm-btn">Contact Us</Link>
                         </div>
                     </div>
