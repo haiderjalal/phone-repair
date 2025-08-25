@@ -32,7 +32,7 @@ export default function TestPage() {
   return (
     <div style={{ padding: '20px', fontFamily: 'monospace' }}>
       <h1>Blog API Test</h1>
-      <p>Fetching data from: https://cms-backend-v26v.onrender.com/api/blog (via local API proxy)</p>
+      <p>Fetching data from: https://lambton-backend.vercel.app/api/blog (via local API proxy)</p>
       
       {loading && (
         <div style={{ color: 'blue' }}>
