@@ -1,48 +1,49 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default function Testimonials() {
     const [testimonials, setTestimonials] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [expandedReviews, setExpandedReviews] = useState({})
+    const carouselRef = useRef(null)
 
-    // Sample testimonials data (replace with Google Reviews API data)
-    const sampleTestimonials = [
-        {
-            id: 1,
-            name: "Sarah Johnson",
-            rating: 5,
-            text: "Excellent service! My iPhone screen was replaced quickly and professionally. The staff was very friendly and the price was reasonable.",
-            date: "2024-01-15"
-        },
-        {
-            id: 2,
-            name: "Michael Chen",
-            rating: 5,
-            text: "Great experience with laptop repair. They diagnosed the issue quickly and had it fixed within 24 hours. Highly recommended!",
-            date: "2024-01-10"
-        },
-        {
-            id: 3,
-            name: "Emma Wilson",
-            rating: 5,
-            text: "Professional and reliable service. My Samsung phone was water damaged and they managed to save all my data. Amazing work!",
-            date: "2024-01-08"
-        }
-    ]
+    // Google Reviews API endpoint
+    const GOOGLE_REVIEWS_API = 'https://api.apify.com/v2/datasets/P7ZM7jJvRkvwaQKNZ/items?token=apify_api_JuhookZnH5cmgkGeQ2dG08eL7WRYok0cJqWy'
 
     useEffect(() => {
-        // Simulate API call - replace with actual Google Reviews API
+        // Fetch real Google Reviews from Apify API
         const fetchTestimonials = async () => {
             try {
                 setLoading(true)
-                // For now, use sample data
-                // TODO: Replace with Google Reviews API call
-                setTimeout(() => {
-                    setTestimonials(sampleTestimonials)
-                    setLoading(false)
-                }, 1000)
+                const response = await fetch(GOOGLE_REVIEWS_API)
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch reviews')
+                }
+                
+                const reviewsData = await response.json()
+                
+                // Transform Google Reviews data to match our component structure
+                const transformedReviews = reviewsData
+                    .filter(review => review.stars >= 4 && review.text && review.text.trim().length > 10) // Only show 4+ star reviews with meaningful text
+                    .slice(0, 12) // Increase to 12 reviews for carousel
+                    .map(review => ({
+                        id: review.reviewId,
+                        name: review.name,
+                        rating: review.stars,
+                        text: review.text,
+                        date: new Date(review.publishedAtDate).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        })
+                    }))
+                
+                setTestimonials(transformedReviews)
+                setLoading(false)
             } catch (err) {
+                console.error('Error fetching Google reviews:', err)
                 setError('Failed to load testimonials')
                 setLoading(false)
             }
@@ -58,6 +59,33 @@ export default function Testimonials() {
                 className={`fas fa-star ${index < rating ? 'text-warning' : 'text-muted'}`}
             ></i>
         ))
+    }
+
+    const truncateText = (text, maxLength = 120) => {
+        if (text.length <= maxLength) return text
+        return text.substring(0, maxLength) + '...'
+    }
+
+    const toggleExpanded = (reviewId) => {
+        setExpandedReviews(prev => ({
+            ...prev,
+            [reviewId]: !prev[reviewId]
+        }))
+    }
+
+    const scrollCarousel = (direction) => {
+        if (carouselRef.current) {
+            const scrollAmount = 320 // Width of one card plus gap
+            const currentScroll = carouselRef.current.scrollLeft
+            const newScroll = direction === 'left' 
+                ? currentScroll - scrollAmount 
+                : currentScroll + scrollAmount
+            
+            carouselRef.current.scrollTo({
+                left: newScroll,
+                behavior: 'smooth'
+            })
+        }
     }
 
     if (loading) {
@@ -102,21 +130,58 @@ export default function Testimonials() {
                     </div>
                 </div>
                 
-                <div className="row g-4">
-                    {testimonials.map((testimonial) => (
-                        <div key={testimonial.id} className="col-lg-4 col-md-6">
-                            <div className="testimonial-card h-100 p-4 bg-white rounded-3 shadow-sm border">
+                {/* Carousel Navigation */}
+                <div className="d-flex justify-content-between align-items-center mb-4">
+                    <button 
+                        className="btn btn-outline-primary rounded-circle p-2"
+                        onClick={() => scrollCarousel('left')}
+                        style={{width: '45px', height: '45px'}}
+                    >
+                        <i className="fas fa-chevron-left"></i>
+                    </button>
+                    <button 
+                        className="btn btn-outline-primary rounded-circle p-2"
+                        onClick={() => scrollCarousel('right')}
+                        style={{width: '45px', height: '45px'}}
+                    >
+                        <i className="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                {/* Horizontal Scrolling Carousel */}
+                <div 
+                    ref={carouselRef}
+                    className="testimonials-carousel d-flex gap-4 overflow-auto pb-3"
+                    style={{
+                        scrollBehavior: 'smooth',
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none',
+                        WebkitScrollbar: { display: 'none' }
+                    }}
+                >
+                    {testimonials.map((testimonial) => {
+                        const isExpanded = expandedReviews[testimonial.id]
+                        const shouldTruncate = testimonial.text.length > 120
+                        
+                        return (
+                            <div 
+                                key={testimonial.id} 
+                                className="testimonial-card flex-shrink-0 p-4 bg-white rounded-3 shadow-sm border"
+                                style={{width: '300px', minHeight: '280px'}}
+                            >
                                 <div className="d-flex align-items-center mb-3">
                                     <div className="testimonial-avatar me-3">
                                         <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center" 
-                                             style={{width: '50px', height: '50px'}}>
+                                             style={{width: '45px', height: '45px'}}>
                                             <span className="text-white fw-bold">
                                                 {testimonial.name.charAt(0)}
                                             </span>
                                         </div>
                                     </div>
                                     <div>
-                                        <h6 className="mb-1 fw-semibold">{testimonial.name}</h6>
+                                        <h6 className="mb-1 fw-semibold" style={{fontSize: '0.9rem'}}>
+                                            {testimonial.name}
+                                        </h6>
                                         <div className="testimonial-rating">
                                             {renderStars(testimonial.rating)}
                                         </div>
@@ -124,24 +189,44 @@ export default function Testimonials() {
                                 </div>
                                 
                                 <blockquote className="mb-3">
-                                    <p className="text-muted mb-0 fst-italic">
-                                        "{testimonial.text}"
+                                    <p className="text-muted mb-0 fst-italic" style={{fontSize: '0.85rem', lineHeight: '1.4'}}>
+                                        "{isExpanded ? testimonial.text : truncateText(testimonial.text)}"
                                     </p>
+                                    {shouldTruncate && (
+                                        <button 
+                                            className="btn btn-link p-0 mt-2 text-primary"
+                                            style={{fontSize: '0.8rem', textDecoration: 'none'}}
+                                            onClick={() => toggleExpanded(testimonial.id)}
+                                        >
+                                            {isExpanded ? 'Show less' : 'View more'}
+                                        </button>
+                                    )}
                                 </blockquote>
                                 
-                                <div className="testimonial-date">
-                                    <small className="text-muted">
+                                <div className="testimonial-date mt-auto">
+                                    <small className="text-muted" style={{fontSize: '0.75rem'}}>
                                         {new Date(testimonial.date).toLocaleDateString('en-AU', {
                                             year: 'numeric',
-                                            month: 'long',
+                                            month: 'short',
                                             day: 'numeric'
                                         })}
                                     </small>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        )
+                    })}
                 </div>
+
+                {/* Custom CSS for hiding scrollbar */}
+                <style jsx>{`
+                    .testimonials-carousel::-webkit-scrollbar {
+                        display: none;
+                    }
+                    .testimonials-carousel {
+                        -ms-overflow-style: none;
+                        scrollbar-width: none;
+                    }
+                `}</style>
                 
                 <div className="row mt-5">
                     <div className="col-12 text-center">
