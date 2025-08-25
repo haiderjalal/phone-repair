@@ -6,6 +6,7 @@ import { WhatsappFormButton } from "@/components/WhatsAppButton"
 
 import Faq from "@/components/sections/home3/Faq"
 import Skill from "@/components/sections/home3/Skill"
+import Testimonials from "@/components/sections/home3/Testimonials"
 import USP from "@/components/sections/home3/USP"
 
 export default function Home() {
@@ -14,11 +15,12 @@ export default function Home() {
         <>
             <Layout headerStyle={3} footerStyle={3}>
                 <Banner />
-                <About />
+                <Skill />
                 <USP />
                 <Services />
             
-                <Skill />
+                  <Testimonials />
+                   <About />
                 <Faq/>
             </Layout>
             <WhatsappFormButton phoneNumber="923556172662" />
