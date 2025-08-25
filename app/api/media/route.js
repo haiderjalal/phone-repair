@@ -14,14 +14,39 @@ async function getMediaMapping() {
 
   try {
     const response = await fetch(
-      "https://cms-backend-v26v.onrender.com/api/media?limit=100"
+      "https://lambton-backend.vercel.app/api/graphql",
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+            query {
+              allMedia {
+                docs {
+                  id
+                  filename
+                  url
+                }
+              }
+            }
+          `
+        })
+      }
     );
 
     if (!response.ok) {
       throw new Error(`Failed to fetch media list: ${response.status}`);
     }
 
-    const data = await response.json();
+    const result = await response.json();
+    
+    if (result.errors) {
+      throw new Error(`GraphQL error: ${result.errors[0].message}`);
+    }
+    
+    const data = { docs: result.data.allMedia.docs };
 
     const mapping = {};
     if (data.docs && Array.isArray(data.docs)) {
@@ -64,11 +89,23 @@ export async function GET(request) {
 
     // ✅ Fetch actual file from Payload CMS
     const cmsResponse = await fetch(
-      `https://cms-backend-v26v.onrender.com${mediaInfo.url}`
+      `https://lambton-backend.vercel.app${mediaInfo.url}`
     );
 
     if (!cmsResponse.ok) {
-      throw new Error(`Failed to fetch file: ${cmsResponse.status}`);
+      console.warn(`Backend media file not accessible: ${cmsResponse.status} for ${mediaInfo.url}`);
+      // Return a simple SVG placeholder instead of fetching from external service
+      const placeholderSvg = `<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100%" height="100%" fill="#f0f0f0"/>
+        <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="24" fill="#666666" text-anchor="middle" dy=".3em">Image Not Available</text>
+      </svg>`;
+      
+      return new NextResponse(placeholderSvg, {
+        headers: {
+          "Content-Type": "image/svg+xml",
+          "Cache-Control": "public, max-age=300", // Shorter cache for placeholders
+        },
+      });
     }
 
     const buffer = await cmsResponse.arrayBuffer();

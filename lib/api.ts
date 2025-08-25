@@ -3,7 +3,7 @@ import type { BlogPost, BlogResponse, MediaItem } from '../types/blog'
 // Use production URL by default, fallback to localhost for development
 const API_URL = process.env.NEXT_PUBLIC_SERVER_URL || 
                 process.env.NEXT_PUBLIC_CMS_URL || 
-                'https://cms-backend-v26v.onrender.com'
+                'https://lambton-backend.vercel.app'
 
 interface FetchOptions extends RequestInit {
   cache?: RequestCache
