@@ -8,8 +8,8 @@ export default function Testimonials() {
     const [expandedReviews, setExpandedReviews] = useState({})
     const carouselRef = useRef(null)
 
-    // Google Reviews API endpoint
-    const GOOGLE_REVIEWS_API = 'https://api.apify.com/v2/datasets/P7ZM7jJvRkvwaQKNZ/items?token=apify_api_JuhookZnH5cmgkGeQ2dG08eL7WRYok0cJqWy'
+    // Google Reviews API endpoint from environment variable
+    const GOOGLE_REVIEWS_API = process.env.NEXT_PUBLIC_APIFY_API_URL
 
     useEffect(() => {
         // Fetch real Google Reviews from Apify API
