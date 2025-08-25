@@ -1,90 +1,65 @@
-'use client'
 import Link from "next/link"
-import { useState } from 'react'
-import ModalVideo from 'react-modal-video'
-
 export default function About() {
-    const [isOpen, setOpen] = useState(false)
     return (
         <>
         
-        {/*About Three Start */}
-        <section className="about-three">
+        {/*About One Start */}
+        <section className="about-one">
+            <div className="about-one__shape-one float-bob-y">
+                <img src="assets/images/shapes/about-one-shape-1.png" alt=""/>
+            </div>
             <div className="container">
                 <div className="row">
-                    <div className="col-xl-5 col-lg-6">
-                        <div className="about-three__left">
-                            
-                            <div className="about-three__img-box">
-                                <div className="about-three__img">
-                                    <img src="assets/images/resources/service-1.jpg" alt=""/>
-                                </div>
-                                <div className="about-three__img-two">
-                                    <img src="assets/images/resources/home-about2.jpg" alt=""/>
-                                    <div className="about-three__video-link">
-                                        <a onClick={() => setOpen(true)} className="video-popup">
-                                            <div className="about-three__video-icon">
-                                                <span className="fa fa-play"></span>
-                                                <i className="ripple"></i>
-                                            </div>
-                                        </a>
+                    <div className="col-xl-6">
+                        <div className="about-one__left wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
+                            <div className="row">
+                                <div className="col-xl-6">
+                                    <div className="about-one__img-box-1">
+                                        <div className="about-one__img-1">
+                                            <img src="assets/images/resources/home-about2.jpg" alt=""/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="about-three__shape-1 shapeMover">
-                                <img src="assets/images/shapes/about-three-shape-1.png" alt=""/>
-                            </div>
-                            <div className="about-three__shape-2 float-bob-y">
-                                <img src="assets/images/shapes/about-three-shape-2.png" alt=""/>
+                                <div className="col-xl-6">
+                                    <div className="about-one__cirtified">
+                                        <div className="icon">
+                                            <span className="icon-certified"></span>
+                                        </div>
+                                        <h3>Trusted phone repair<br/> experts since 2013</h3>
+                                    </div>
+                                    <div className="about-one__img-box-2">
+                                        <div className="about-one__img-2">
+                                            <img src="assets/images/resources/service-1.jpg" alt=""/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-xl-7 col-lg-6">
-                        <div className="about-three__right">
-                            <div className="section-title-three text-left sec-title-animation animation-style2">
-                                <div className="section-title-three__tagline-box">
-                                    <div className="section-title-three__tagline-shape"></div>
-                                    <span className="section-title-three__tagline">Lambton's Trusted</span>
+                    <div className="col-xl-6">
+                        <div className="about-one__right wow fadeInRight" data-wow-delay="300ms">
+                            <div className="section-title text-left">
+                                <div className="section-title__tagline-box">
+                                    <span className="section-title__tagline">Get To Know Us</span>
                                 </div>
-                                <h2 className="section-title-three__title title-animation">Your Local Phone Repair
-                                    Experts Since 2015</h2>
+                                <div className="section-title__title-box sec-title-animation animation-style2">
+                                    <h2 className="section-title__title title-animation">Professional Phone Repair & 
+                                        Mobile Device
+                                        Services
+                                    </h2>
+                                </div>
                             </div>
-                            <p className="about-three__text-1">At Lambton Phones, we specialize in fast, reliable repairs for all smartphone brands and models, serving the Lambton community with excellence.</p>
-                            <ul className="list-unstyled about-three__points">
-                                <li>
-                                    <div className="icon">
-                                        <span className="icon-like"></span>
-                                    </div>
-                                    <div className="text">
-                                        <p>GENUINE PARTS & WARRANTY</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="icon">
-                                        <span className="icon-hands-on-experience"></span>
-                                    </div>
-                                    <div className="text">
-                                        <p>LOCAL LAMBTON COMMUNITY FOCUSED</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="icon">
-                                        <span className="icon-project-complete"></span>
-                                    </div>
-                                    <div className="text">
-                                        <p>SAME DAY REPAIR SERVICE</p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <p className="about-three__text-2">Expert cell phone repairs in Lambton. For screens, batteries, and more. Same-day service available. 24/7 emergency repair service. Quick turnaround and competitive prices. Guaranteed 1-hour iPhone screen replacement. Samsung Galaxy repair specialists for cracked screens and water damage. Fast water damage repair with high success rate at affordable prices. Repair, dont replace. </p>
-                            <Link href="contact" className="thm-btn">Contact Us</Link>
+                            <p className="about-one__text-1">At Lambton Phones, we specialize in comprehensive mobile device repair services. From cracked screens to battery replacements, our certified technicians provide fast, reliable solutions for all your smartphone and tablet needs. We use only genuine parts and offer warranty on all repairs.</p>
+                            <p className="about-one__text-2">Whether it's an iPhone, Samsung, Google Pixel, or any other brand, we have the expertise to get your device back to perfect working condition. Our state-of-the-art facility and experienced team ensure quality repairs with quick turnaround times, so you can stay connected without missing a beat.</p>
+                            <div className="about-one__btn-box">
+                                <Link href="about" className="about-one__btn thm-btn">About Us More</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        {/*About Three Start */}
-        <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="Get7rqXYrbQ" onClose={() => setOpen(false)} />
+        {/*About One End */}
         
         </>
     )
