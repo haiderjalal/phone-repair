@@ -26,14 +26,19 @@ export default function BlogDetailsPage() {
     const fetchBlog = async () => {
         setLoading(true)
         try {
-            const data = await getBlogBySlug(slug)
-            if (data === null) {
-                setError('Unable to connect to the blog service. Please try again later.')
-            } else if (data) {
-                setBlog(data)
-            } else {
-                setError('Blog not found')
+            const response = await fetch(`/api/blog/${slug}`)
+            
+            if (!response.ok) {
+                if (response.status === 404) {
+                    setError('Blog not found')
+                } else {
+                    setError('Unable to connect to the blog service. Please try again later.')
+                }
+                return
             }
+            
+            const data = await response.json()
+            setBlog(data)
         } catch (error) {
             console.error('Error fetching blog:', error)
             setError('Failed to load blog')
@@ -45,10 +50,15 @@ export default function BlogDetailsPage() {
     const fetchFirstBlog = async () => {
         setLoading(true)
         try {
-            const data = await getBlogs(1, 1) // Get first blog
-            if (data === null) {
+            const response = await fetch('/api/blog')
+            
+            if (!response.ok) {
                 setError('Unable to connect to the blog service. Please try again later.')
-            } else if (data && data.docs && data.docs.length > 0) {
+                return
+            }
+            
+            const data = await response.json()
+            if (data && data.docs && data.docs.length > 0) {
                 setBlog(data.docs[0])
             } else {
                 setError('No blogs found')
@@ -63,8 +73,13 @@ export default function BlogDetailsPage() {
 
     const fetchRecentPosts = async () => {
         try {
-            const response = await getBlogs(1, 5) // Get 5 recent posts
-            setRecentPosts(response.docs || [])
+            const response = await fetch('/api/blog')
+            
+            if (response.ok) {
+                const data = await response.json()
+                // Get first 5 posts for recent posts
+                setRecentPosts(data.docs?.slice(0, 5) || [])
+            }
         } catch (err) {
             console.error('Error fetching recent posts:', err)
         }
