@@ -3,6 +3,16 @@
   "buildCommand": "npm run build",
   "installCommand": "npm install",
   "devCommand": "npm run dev",
+  "functions": {
+    "app/**/*.js": {
+      "maxDuration": 30
+    }
+  },
+  "build": {
+    "env": {
+      "NEXT_FONT_GOOGLE_MOCKED_RESPONSES": "[{\"url\":\"https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap\",\"fallbackFonts\":[\"Arial\",\"sans-serif\"]}]"
+    }
+  },
   "headers": [
     {
       "source": "/assets/(.*)",
